@@ -3,7 +3,7 @@ package nl.steenbrink.kaasmod.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import nl.steenbrink.kaasmod.CreativeTabKaasmod;
+import nl.steenbrink.kaasmod.creative.CreativeTabKaasmod;
 import nl.steenbrink.kaasmod.utility.UnlocalizedNameHelper;
 
 public class BlockBasic extends Block {

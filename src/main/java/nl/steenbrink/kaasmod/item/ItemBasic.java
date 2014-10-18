@@ -3,7 +3,7 @@ package nl.steenbrink.kaasmod.item;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import nl.steenbrink.kaasmod.CreativeTabKaasmod;
+import nl.steenbrink.kaasmod.creative.CreativeTabKaasmod;
 import nl.steenbrink.kaasmod.utility.UnlocalizedNameHelper;
 
 public class ItemBasic extends Item {

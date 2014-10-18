@@ -1,4 +1,4 @@
-package nl.steenbrink.kaasmod;
+package nl.steenbrink.kaasmod.creative;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
