@@ -5,6 +5,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.common.MinecraftForge;
+import nl.steenbrink.kaasmod.handler.EntityEventHandler;
 import nl.steenbrink.kaasmod.init.ModBlocks;
 import nl.steenbrink.kaasmod.init.ModItems;
 import nl.steenbrink.kaasmod.proxy.IProxy;
@@ -28,7 +30,8 @@ public class Kaasmod {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-
+        // Register event handlers
+        MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
     }
 
     @Mod.EventHandler
