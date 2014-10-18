@@ -7,7 +7,7 @@ public class Names {
     }
 
     public static class Items {
-        public static final String STOMACH = "stomach";
+        public static final String STOMACH = "babyCowStomach";
     }
 
 }
