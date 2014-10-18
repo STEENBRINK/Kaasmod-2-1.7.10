@@ -5,6 +5,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import nl.steenbrink.kaasmod.init.ModBlocks;
+import nl.steenbrink.kaasmod.init.ModItems;
 import nl.steenbrink.kaasmod.proxy.IProxy;
 import nl.steenbrink.kaasmod.reference.Reference;
 
@@ -19,7 +21,9 @@ public class Kaasmod {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-
+        // Initialize the items and blocks
+        ModBlocks.init();
+        ModItems.init();
     }
 
     @Mod.EventHandler
