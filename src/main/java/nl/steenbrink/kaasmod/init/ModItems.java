@@ -8,9 +8,11 @@ import nl.steenbrink.kaasmod.reference.Names;
 public class ModItems {
 
     public static final Item itemStomach = (new ItemBasic()).setUnlocalizedName(Names.Items.STOMACH);
+    public static final Item itemRawSalt = (new ItemBasic()).setUnlocalizedName(Names.Items.RAW_SALT);
 
     public static void init() {
         GameRegistry.registerItem(itemStomach, Names.Items.STOMACH);
+        GameRegistry.registerItem(itemRawSalt, Names.Items.RAW_SALT);
     }
 
 }
