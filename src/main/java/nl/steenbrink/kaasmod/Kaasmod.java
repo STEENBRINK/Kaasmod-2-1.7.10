@@ -5,12 +5,14 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import nl.steenbrink.kaasmod.handler.EntityEventHandler;
 import nl.steenbrink.kaasmod.init.ModBlocks;
 import nl.steenbrink.kaasmod.init.ModItems;
 import nl.steenbrink.kaasmod.proxy.IProxy;
 import nl.steenbrink.kaasmod.reference.Reference;
+import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class Kaasmod {
@@ -32,6 +34,8 @@ public class Kaasmod {
     public void init(FMLInitializationEvent event) {
         // Register event handlers
         MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
+
+        GameRegistry.registerTileEntity(TileEntityBarrel.class, "tileBarrel");
     }
 
     @Mod.EventHandler
