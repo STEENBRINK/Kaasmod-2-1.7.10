@@ -12,4 +12,9 @@ public class Names {
         public static final String RAW_SALT = "rawSalt";
     }
 
+    public static class Fluids {
+        public static final String MILK = "milk";
+        public static final String SALT_WATER = "saltWater";
+    }
+
 }
