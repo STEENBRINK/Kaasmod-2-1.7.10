@@ -7,7 +7,7 @@ import nl.steenbrink.kaasmod.fluid.FluidSaltWater;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModFluids{
-    public static Fluid saltWater = new Fluid(Names.Fluids.SALT_WATER).set;
+    public static Fluid saltWater = new Fluid(Names.Fluids.SALT_WATER);
 
     public static void init(){
         FluidRegistry.registerFluid(saltWater);

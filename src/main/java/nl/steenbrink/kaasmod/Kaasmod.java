@@ -9,6 +9,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import nl.steenbrink.kaasmod.handler.EntityEventHandler;
 import nl.steenbrink.kaasmod.init.ModBlocks;
+import nl.steenbrink.kaasmod.init.ModFluids;
 import nl.steenbrink.kaasmod.init.ModItems;
 import nl.steenbrink.kaasmod.proxy.IProxy;
 import nl.steenbrink.kaasmod.reference.Reference;
@@ -26,6 +27,7 @@ public class Kaasmod {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         // Initialize the items and blocks
+        ModFluids.init();
         ModBlocks.init();
         ModItems.init();
     }
