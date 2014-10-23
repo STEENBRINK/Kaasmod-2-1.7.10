@@ -16,17 +16,15 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     }
 
     public FluidStack fluidStack = new FluidStack(0, 0);
-    private int fluidCapacity = 1000;
+    public int fluidCapacity = 1000;
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound) {
         super.readFromNBT(nbtTagCompound);
 
         // Read the internal fluidStack
-        if (nbtTagCompound.hasKey("Fluid")) {
-            NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
-            this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
-        }
+        NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
+        this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
     }
 
     @Override
@@ -34,21 +32,20 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         super.writeToNBT(nbtTagCompound);
 
         // Save the internal fluidStack
-        if (FluidRegistry.getFluidName(fluidStack) != null) {
-            NBTTagCompound fluidCompound = new NBTTagCompound();
-            this.fluidStack.writeToNBT(fluidCompound);
-            nbtTagCompound.setTag("Fluid", fluidCompound);
-        }
-
+        NBTTagCompound fluidCompound = new NBTTagCompound();
+        this.fluidStack.writeToNBT(fluidCompound);
+        nbtTagCompound.setTag("Fluid", fluidCompound);
     }
 
     /* --- IFluidHandler --- */
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         //Simulate the fill to see if there is room for incoming liquids.
         int capacity = fluidCapacity - fluidStack.amount;
 
         if (!doFill) {
+            if (resource.fluidID != fluidStack.fluidID && fluidStack.amount > 0) return 0;
             return Math.min(resource.amount, capacity);
         } else {
             if (fluidStack.amount == 0) {
@@ -82,6 +79,7 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         if (fluidStack.fluidID == 0) return new FluidStack(0, 0);
         if (!doDrain) {
             if (fluidStack.amount >= maxDrain) {

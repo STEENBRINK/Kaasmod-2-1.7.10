@@ -102,7 +102,7 @@ public class BlockBarrel extends BlockContainer {
             }
         }
 
-        return false;
+        return true;
     }
 
     private ItemStack getContainer(ItemStack item) {
