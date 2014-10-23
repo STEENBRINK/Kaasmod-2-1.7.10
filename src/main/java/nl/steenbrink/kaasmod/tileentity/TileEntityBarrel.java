@@ -5,9 +5,15 @@ import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import nl.steenbrink.kaasmod.init.ModFluids;
+import nl.steenbrink.kaasmod.init.ModItems;
 
 public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISidedInventory {
 
@@ -15,16 +21,54 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         super();
     }
 
+    private boolean shouldUpdate = true;
+
     public FluidStack fluidStack = new FluidStack(0, 0);
     public int fluidCapacity = 1000;
+
+    private ItemStack[] inventory = new ItemStack[1];
+
+    @Override
+    public void updateEntity() {
+        if (this.shouldUpdate) {
+            this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+            this.shouldUpdate = false;
+        }
+        super.updateEntity();
+        if (this.worldObj.isRemote) return;
+
+        // Using the inserted items
+        if (this.getStackInSlot(0) != null) {
+            // Turning Water into SaltWater
+            if (this.fluidStack.getFluid() == FluidRegistry.WATER && this.getStackInSlot(0).getItem() == ModItems.itemRawSalt) {
+                this.setInventorySlotContents(0, null);
+                this.fluidStack.fluidID = ModFluids.fluidSaltWater.getID();
+                this.shouldUpdate = true;
+            }
+        }
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound) {
         super.readFromNBT(nbtTagCompound);
 
         // Read the internal fluidStack
-        NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
-        this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
+        if (nbtTagCompound.hasKey("Fluid")) {
+            NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
+            this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
+        }
+
+        // Read the inventory
+        NBTTagList inventoryList = nbtTagCompound.getTagList("Items", 10);
+        this.inventory = new ItemStack[this.getSizeInventory()];
+        for (int i = 0; i < inventoryList.tagCount(); ++i) {
+            NBTTagCompound tagCompound = inventoryList.getCompoundTagAt(i);
+            int j = tagCompound.getByte("Slot") & 255;
+            if (j >= 0 && j < this.inventory.length) {
+                this.inventory[j] = ItemStack.loadItemStackFromNBT(tagCompound);
+            }
+        }
+
     }
 
     @Override
@@ -32,16 +76,44 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         super.writeToNBT(nbtTagCompound);
 
         // Save the internal fluidStack
-        NBTTagCompound fluidCompound = new NBTTagCompound();
-        this.fluidStack.writeToNBT(fluidCompound);
-        nbtTagCompound.setTag("Fluid", fluidCompound);
+        if (this.fluidStack.getFluid() != null) {
+            NBTTagCompound fluidCompound = new NBTTagCompound();
+            this.fluidStack.writeToNBT(fluidCompound);
+            nbtTagCompound.setTag("Fluid", fluidCompound);
+        }
+
+        // Write the inventorty
+        NBTTagList inventoryList = new NBTTagList();
+        for (int i = 0; i < this.inventory.length; ++i) {
+            if (this.inventory[i] != null) {
+                NBTTagCompound tagCompound = new NBTTagCompound();
+                tagCompound.setByte("Slot", (byte) i);
+                this.inventory[i].writeToNBT(tagCompound);
+                inventoryList.appendTag(tagCompound);
+            }
+        }
+        nbtTagCompound.setTag("Items", inventoryList);
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        this.writeToNBT(tag);
+
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        NBTTagCompound tag = pkt.func_148857_g();
+        readFromNBT(tag);
     }
 
     /* --- IFluidHandler --- */
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-        //Simulate the fill to see if there is room for incoming liquids.
+        this.shouldUpdate = true;
+
         int capacity = fluidCapacity - fluidStack.amount;
 
         if (!doFill) {
@@ -79,7 +151,8 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
-        worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+        this.shouldUpdate = true;
+
         if (fluidStack.fluidID == 0) return new FluidStack(0, 0);
         if (!doDrain) {
             if (fluidStack.amount >= maxDrain) {
@@ -113,27 +186,27 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     /* --- ISidedInventory --- */
     @Override
     public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
-        return new int[0];
+        return new int[]{0};
     }
 
     @Override
     public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-        return false;
+        return true;
     }
 
     @Override
     public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-        return false;
+        return true;
     }
 
     @Override
     public int getSizeInventory() {
-        return 0;
+        return inventory.length;
     }
 
     @Override
-    public ItemStack getStackInSlot(int p_70301_1_) {
-        return null;
+    public ItemStack getStackInSlot(int slot) {
+        return inventory[slot];
     }
 
     @Override
@@ -147,8 +220,8 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     }
 
     @Override
-    public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
-
+    public void setInventorySlotContents(int slot, ItemStack itemStack) {
+        inventory[slot] = itemStack;
     }
 
     @Override
@@ -163,26 +236,24 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public int getInventoryStackLimit() {
-        return 0;
+        return 1;
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer p_70300_1_) {
-        return false;
+    public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
+        return true;
     }
 
     @Override
     public void openInventory() {
-
     }
 
     @Override
     public void closeInventory() {
-
     }
 
     @Override
-    public boolean isItemValidForSlot(int p_94041_1_, ItemStack p_94041_2_) {
-        return false;
+    public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
+        return true;
     }
 }
