@@ -15,12 +15,24 @@ public class Names {
         public static final String DIRTY_SALT = "dirtySalt";
         public static final String KNIFE = "knife";
         public static final String STOMACH_SLICE = "stomachSlice";
+        public static final String BREAD_SLICE = "breadSlice";
+        public static final String CURDLED_MILK_BUCKET = "curdledMilkBucket";
+        public static final String PROCESSED_CURDLED_MILK_BUCKET = "processedCurdledMilkBucket";
+        public static final String RENNET_BUCKET = "rennetBucket";
+        public static final String LACTIC_ACID_BUCKET = "lacticAcidBucket";
+
     }
 
     public static class Fluids {
         public static final String MILK = "milk";
         public static final String SALT_WATER = "saltWater";
         public static final String VINEGAR = "vinegar";
+        public static final String LACTIC_ACID = "lacticAcid";
+        public static final String RENNET = "rennet";
+        public static final String CURDLED_MILK = "curdledMilk";
+        public static final String PROCESSED_CURDLED_MILK = "processedCurdledMilk";
+        public static final String CRAFTING_FLUID = "craftingFluid";
+
     }
 
 }

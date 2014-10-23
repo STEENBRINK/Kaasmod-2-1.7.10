@@ -6,6 +6,11 @@ item.kaasmod:cleanSalt.name=Clean Salt
 item.kaasmod:vinegarBucket.name=Vinegar Bucket
 item.kaasmod:knife.name=Knife
 item.kaasmod:stomachSlice.name=Stomach Slice
+item.kaasmod:breadSlice.name=Bread Slice
+item.kaasmod:lacticAcidBucket.name=Lactic Acid Bucket
+item.kaasmod:rennetBucket.name=Rennet Bucket
+item.kaasmod:curdledMilkBucket.name=Curdled Milk Bucket
+item.kaasmod:processedCurdledMilkBucket.name=Processed Curdled Milk Bucket
 
 #Blocks
 tile.kaasmod:barrel.name=Barrel
