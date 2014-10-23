@@ -2,6 +2,7 @@
 item.kaasmod:babyCowStomach.name=Babycow's Stomach
 item.kaasmod:saltWaterBucket.name=Salt Water Bucket
 item.kaasmod:rawSalt.name=Raw Salt
+item.kaasmod:vinegarBucket.name=Vinegar Bucket
 
 #Blocks
 tile.kaasmod:barrel.name=Barrel
