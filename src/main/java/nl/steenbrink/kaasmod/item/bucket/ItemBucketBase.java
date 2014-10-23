@@ -6,7 +6,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import nl.steenbrink.kaasmod.creative.CreativeTabKaasmod;
-import nl.steenbrink.kaasmod.reference.Names;
 import nl.steenbrink.kaasmod.utility.UnlocalizedNameHelper;
 
 public class ItemBucketBase extends ItemBucket
