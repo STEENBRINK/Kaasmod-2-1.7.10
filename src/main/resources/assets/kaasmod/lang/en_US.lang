@@ -4,6 +4,8 @@ item.kaasmod:saltWaterBucket.name=Salt Water Bucket
 item.kaasmod:dirtySalt.name=Dirty Salt
 item.kaasmod:cleanSalt.name=Clean Salt
 item.kaasmod:vinegarBucket.name=Vinegar Bucket
+item.kaasmod:knife.name=Knife
+item.kaasmod:stomachSlice.name=Stomach Slice
 
 #Blocks
 tile.kaasmod:barrel.name=Barrel

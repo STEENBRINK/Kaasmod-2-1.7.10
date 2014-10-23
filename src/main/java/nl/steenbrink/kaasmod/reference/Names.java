@@ -13,6 +13,8 @@ public class Names {
         public static final String SALT_WATER_BUCKET = "saltWaterBucket";
         public static final String VINEGAR_BUCKET = "vinegarBucket";
         public static final String DIRTY_SALT = "dirtySalt";
+        public static final String KNIFE = "knife";
+        public static final String STOMACH_SLICE = "stomachSlice";
     }
 
     public static class Fluids {

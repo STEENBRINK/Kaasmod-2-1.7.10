@@ -11,6 +11,7 @@ import nl.steenbrink.kaasmod.handler.EntityEventHandler;
 import nl.steenbrink.kaasmod.init.ModBlocks;
 import nl.steenbrink.kaasmod.init.ModFluids;
 import nl.steenbrink.kaasmod.init.ModItems;
+import nl.steenbrink.kaasmod.init.Recipes;
 import nl.steenbrink.kaasmod.proxy.IProxy;
 import nl.steenbrink.kaasmod.reference.Reference;
 import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
@@ -40,6 +41,8 @@ public class Kaasmod {
 
         proxy.registerTileEntityRenderer();
         GameRegistry.registerTileEntity(TileEntityBarrel.class, "tileBarrel");
+
+        Recipes.init();
     }
 
     @Mod.EventHandler

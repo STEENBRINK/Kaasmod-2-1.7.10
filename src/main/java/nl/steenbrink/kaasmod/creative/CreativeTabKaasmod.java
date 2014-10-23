@@ -3,6 +3,7 @@ package nl.steenbrink.kaasmod.creative;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import nl.steenbrink.kaasmod.init.ModItems;
 import nl.steenbrink.kaasmod.reference.Reference;
 
 public class CreativeTabKaasmod extends CreativeTabs {
@@ -15,6 +16,6 @@ public class CreativeTabKaasmod extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return Items.cake;
+        return ModItems.itemKnife;
     }
 }
