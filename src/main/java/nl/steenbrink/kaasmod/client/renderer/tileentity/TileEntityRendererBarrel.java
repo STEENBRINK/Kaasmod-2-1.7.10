@@ -30,16 +30,24 @@ public class TileEntityRendererBarrel extends TileEntitySpecialRenderer {
         GL11.glPopMatrix();
         GL11.glPopMatrix();
 
+        if (tileEntityBarrel.getStackInSlot(0) != null) {
+            GL11.glPushMatrix();
+            this.bindTexture(TextureMap.locationItemsTexture);
+            this.modelBarrel.renderItem(tileEntityBarrel, x, y, z);
+            GL11.glPopMatrix();
+        }
+
         if (tileEntityBarrel.fluidStack.amount > 0) {
             //System.err.println(">> RENDER: " + tileEntityBarrel.fluidStack.getFluid().getName());
             GL11.glPushMatrix();
             float fluidHeight = ((0.90f - 0.13f)/(tileEntityBarrel.fluidCapacity - 1)) * tileEntityBarrel.fluidStack.amount + 0.129229229f;
             GL11.glTranslatef((float)x + 0.5F,(float)y + fluidHeight,(float)z + 0.5F);
             GL11.glScalef(0.9f, 1.0f, 0.9f);
-            ResourceLocation fluidTexture = TextureMap.locationBlocksTexture;
-            bindTexture(fluidTexture);
+            this.bindTexture(TextureMap.locationBlocksTexture);
             this.modelBarrel.renderInternal(0xffffffff, tileEntityBarrel.fluidStack.getFluid().getIcon(), true);
             GL11.glPopMatrix();
         }
+
+
     }
 }

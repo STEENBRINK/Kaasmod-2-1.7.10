@@ -3,23 +3,40 @@ package nl.steenbrink.kaasmod.client.renderer.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
 import org.lwjgl.opengl.GL11;
 
 public class ModelBarrel extends ModelBase {
-    ModelRenderer ShapeA;
-    ModelRenderer ShapeB;
-    ModelRenderer ShapeC;
-    ModelRenderer ShapeD;
-    ModelRenderer ShapeE;
-    ModelRenderer ShapeF;
-    ModelRenderer ShapeG;
-    ModelRenderer ShapeH;
-    ModelRenderer ShapeI;
-    ModelRenderer ShapeJ;
+    private ModelRenderer ShapeA;
+    private ModelRenderer ShapeB;
+    private ModelRenderer ShapeC;
+    private ModelRenderer ShapeD;
+    private ModelRenderer ShapeE;
+    private ModelRenderer ShapeF;
+    private ModelRenderer ShapeG;
+    private ModelRenderer ShapeH;
+    private ModelRenderer ShapeI;
+    private ModelRenderer ShapeJ;
+
+    private final RenderItem customRenderItem;
 
     public ModelBarrel() {
+        customRenderItem = new RenderItem() {
+            @Override
+            public boolean shouldBob() {
+                return false;
+            }
+        };
+        customRenderItem.setRenderManager(RenderManager.instance);
+
         textureWidth = 64;
         textureHeight = 64;
 
@@ -148,6 +165,28 @@ public class ModelBarrel extends ModelBase {
             GL11.glEnable(GL11.GL_LIGHTING);
             GL11.glDisable(GL11.GL_BLEND);
         }
+    }
+
+    public void renderItem(TileEntityBarrel tileEntityBarrel, double x, double y, double z) {
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+
+        float scaleFactor = 1f;
+        float rotationAngle = (float) (720.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
+
+        EntityItem ghostEntityItem = new EntityItem(tileEntityBarrel.getWorldObj());
+        ghostEntityItem.hoverStart = 0.0F;
+        ghostEntityItem.setEntityItemStack(tileEntityBarrel.getStackInSlot(0));
+
+        GL11.glTranslatef((float) x + 0.5f, (float) y + 0.5f, (float) z + 0.5f);
+        GL11.glScalef(scaleFactor, scaleFactor, scaleFactor);
+        GL11.glRotatef(rotationAngle, 0.0F, 1.0F, 0.0F);
+
+        customRenderItem.doRender(ghostEntityItem, 0, 0, 0, 0, 0);
+
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
     }
 
     private void setRotation(ModelRenderer model, float x, float y, float z) {

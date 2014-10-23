@@ -206,7 +206,7 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public ItemStack getStackInSlot(int slot) {
-        return inventory[slot];
+        return this.inventory[slot];
     }
 
     @Override
@@ -221,7 +221,8 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public void setInventorySlotContents(int slot, ItemStack itemStack) {
-        inventory[slot] = itemStack;
+        this.inventory[slot] = itemStack;
+        this.shouldUpdate = true;
     }
 
     @Override
