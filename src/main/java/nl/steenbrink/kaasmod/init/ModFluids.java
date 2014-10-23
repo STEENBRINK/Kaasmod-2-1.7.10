@@ -14,15 +14,19 @@ import nl.steenbrink.kaasmod.item.ItemSaltWaterBucket;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModFluids{
-    public static Fluid saltWater = new Fluid(Names.Fluids.SALT_WATER);
+    public static Fluid fluidSaltWater = new Fluid(Names.Fluids.SALT_WATER);
+    public static Fluid fluidMilk = new Fluid(Names.Fluids.MILK);
 
     public static void init(){
-        FluidRegistry.registerFluid(saltWater);
+        FluidRegistry.registerFluid(fluidSaltWater);
+        FluidRegistry.registerFluid(fluidMilk);
     }
 
     public static void registerBuckets(){
-        FluidContainerRegistry.registerFluidContainer(new FluidStack(saltWater, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemSaltWaterBucket), new ItemStack(Items.bucket));
+        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidSaltWater, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemSaltWaterBucket), new ItemStack(Items.bucket));
+        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidMilk, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(Items.milk_bucket), new ItemStack(Items.bucket));
         BucketHandler.INSTANCE.buckets.put(ModBlocks.blockSaltWater, ModItems.itemSaltWaterBucket);
+        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockMilk, Items.milk_bucket);
 
         MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
     }

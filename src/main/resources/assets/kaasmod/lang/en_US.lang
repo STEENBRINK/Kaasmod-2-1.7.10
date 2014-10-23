@@ -1,9 +1,11 @@
 #Items
 item.kaasmod:babyCowStomach.name=Babycow's Stomach
 item.kaasmod:saltWaterBucket.name=Salt Water Bucket
+item.kaasmod:rawSalt.name=Raw Salt
 
 #Blocks
-tile.kaasmod:saltWater.name=Salt Water
+tile.kaasmod:barrel.name=Barrel
+tile.kaasmod:saltOre.name=Salt Ore
 
 #Creativetab
 itemGroup.kaasmod=Steenbrink's Kaasmod

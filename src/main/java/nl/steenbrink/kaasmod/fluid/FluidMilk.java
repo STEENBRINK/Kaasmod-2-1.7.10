@@ -7,6 +7,6 @@ public class FluidMilk extends Fluid
 {
     public FluidMilk(String fluidName)
     {
-        super(Names.Fluids.MILK);
+        super(fluidName);
     }
 }
