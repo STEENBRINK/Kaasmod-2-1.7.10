@@ -4,9 +4,11 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -24,6 +26,8 @@ public class BlockBarrel extends BlockContainer {
         this.setCreativeTab(CreativeTabKaasmod.INSTANCE);
         this.setBlockName(Names.Blocks.BARREL);
         this.setStepSound(Block.soundTypeWood);
+        this.setHardness(2.0F);
+        this.setResistance(5.0F);
     }
 
     @Override
@@ -99,10 +103,62 @@ public class BlockBarrel extends BlockContainer {
                         return true;
                     }
                 }
+            } else {
+                if (tileEntityBarrel.getStackInSlot(0) == null) {
+                    tileEntityBarrel.setInventorySlotContents(0, equipedItem.splitStack(1));
+                }
             }
         }
 
         return true;
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
+        TileEntityBarrel tileentityfurnace = (TileEntityBarrel)world.getTileEntity(x, y, z);
+
+        if (tileentityfurnace != null)
+        {
+            for (int i1 = 0; i1 < tileentityfurnace.getSizeInventory(); ++i1)
+            {
+                ItemStack itemstack = tileentityfurnace.getStackInSlot(i1);
+
+                if (itemstack != null)
+                {
+                    float f = world.rand.nextFloat() * 0.8F + 0.1F;
+                    float f1 = world.rand.nextFloat() * 0.8F + 0.1F;
+                    float f2 = world.rand.nextFloat() * 0.8F + 0.1F;
+
+                    while (itemstack.stackSize > 0)
+                    {
+                        int j1 = world.rand.nextInt(21) + 10;
+
+                        if (j1 > itemstack.stackSize)
+                        {
+                            j1 = itemstack.stackSize;
+                        }
+
+                        itemstack.stackSize -= j1;
+                        EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+
+                        if (itemstack.hasTagCompound())
+                        {
+                            entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                        }
+
+                        float f3 = 0.05F;
+                        entityitem.motionX = (double)((float)world.rand.nextGaussian() * f3);
+                        entityitem.motionY = (double)((float)world.rand.nextGaussian() * f3 + 0.2F);
+                        entityitem.motionZ = (double)((float)world.rand.nextGaussian() * f3);
+                        world.spawnEntityInWorld(entityitem);
+                    }
+                }
+            }
+
+            world.func_147453_f(x, y, z, block);
+        }
+
+        super.breakBlock(world, x, y, z, block, metadata);
     }
 
     private ItemStack getContainer(ItemStack item) {
