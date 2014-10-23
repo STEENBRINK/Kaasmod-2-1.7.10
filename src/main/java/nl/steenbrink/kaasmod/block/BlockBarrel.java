@@ -2,6 +2,7 @@ package nl.steenbrink.kaasmod.block;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -13,6 +14,7 @@ import net.minecraftforge.fluids.FluidStack;
 import nl.steenbrink.kaasmod.creative.CreativeTabKaasmod;
 import nl.steenbrink.kaasmod.reference.Names;
 import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
+import nl.steenbrink.kaasmod.utility.UnlocalizedNameHelper;
 
 public class BlockBarrel extends BlockContainer {
 
@@ -23,8 +25,33 @@ public class BlockBarrel extends BlockContainer {
     }
 
     @Override
+    public void registerBlockIcons(IIconRegister iconRegister) {
+        this.blockIcon = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()));
+    }
+
+    @Override
+    public String getUnlocalizedName() {
+        return UnlocalizedNameHelper.getUnlocalizedBlockName(super.getUnlocalizedName());
+    }
+
+    @Override
     public TileEntity createNewTileEntity(World world, int metaData) {
         return new TileEntityBarrel();
+    }
+
+    @Override
+    public int getRenderType() {
+        return -1;
+    }
+
+    @Override
+    public boolean isOpaqueCube() {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock() {
+        return false;
     }
 
     @Override
@@ -73,7 +100,7 @@ public class BlockBarrel extends BlockContainer {
             }
         }
 
-        return true;
+        return false;
     }
 
     private ItemStack getContainer(ItemStack item) {

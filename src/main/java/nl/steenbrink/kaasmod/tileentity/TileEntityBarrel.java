@@ -23,8 +23,10 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         super.readFromNBT(nbtTagCompound);
 
         // Read the internal fluidStack
-        NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
-        this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
+        if (nbtTagCompound.hasKey("Fluid")) {
+            NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
+            this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
+        }
     }
 
     @Override
@@ -32,9 +34,12 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         super.writeToNBT(nbtTagCompound);
 
         // Save the internal fluidStack
-        NBTTagCompound fluidCompound = new NBTTagCompound();
-        this.fluidStack.writeToNBT(fluidCompound);
-        nbtTagCompound.setTag("Fluid", fluidCompound);
+        if (FluidRegistry.getFluidName(fluidStack) != null) {
+            NBTTagCompound fluidCompound = new NBTTagCompound();
+            this.fluidStack.writeToNBT(fluidCompound);
+            nbtTagCompound.setTag("Fluid", fluidCompound);
+        }
+
     }
 
     /* --- IFluidHandler --- */
@@ -77,6 +82,7 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+        if (fluidStack.fluidID == 0) return new FluidStack(0, 0);
         if (!doDrain) {
             if (fluidStack.amount >= maxDrain) {
                 return new FluidStack(FluidRegistry.getFluid(fluidStack.fluidID), maxDrain);

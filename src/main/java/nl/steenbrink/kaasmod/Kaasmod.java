@@ -37,6 +37,7 @@ public class Kaasmod {
         // Register event handlers
         MinecraftForge.EVENT_BUS.register(new EntityEventHandler());
 
+        proxy.registerTileEntityRenderer();
         GameRegistry.registerTileEntity(TileEntityBarrel.class, "tileBarrel");
     }
 
