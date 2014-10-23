@@ -8,9 +8,7 @@ import nl.steenbrink.kaasmod.init.ModFluids;
 
 public class BlockKaasmodFluidBase extends BlockFluidClassic
 {
-
-    public BlockKaasmodFluidBase(Fluid fluid, Material material)
-    {
+    public BlockKaasmodFluidBase(Fluid fluid, Material material){
         super(fluid, material);
         this.setCreativeTab(CreativeTabKaasmod.INSTANCE);
     }
