@@ -30,6 +30,7 @@ public class Kaasmod {
         ModFluids.init();
         ModBlocks.init();
         ModItems.init();
+        ModFluids.registerBuckets();
     }
 
     @Mod.EventHandler

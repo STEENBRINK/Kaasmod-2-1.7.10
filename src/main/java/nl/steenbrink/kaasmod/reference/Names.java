@@ -10,6 +10,7 @@ public class Names {
     public static class Items {
         public static final String STOMACH = "babyCowStomach";
         public static final String RAW_SALT = "rawSalt";
+        public static final String SALT_WATER_BUCKET = "saltWaterBucket";
     }
 
     public static class Fluids {

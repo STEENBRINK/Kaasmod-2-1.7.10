@@ -15,12 +15,12 @@ public class ModBlocks {
 
     public static final Block blockSaltOre = new BlockSaltOre();
     public static final Block blockBarrel = new BlockBarrel();
-    public static final BlockFluidClassic saltWater = new BlockSaltWater(ModFluids.saltWater, Material.water);
+    public static final BlockFluidClassic blockSaltWater = new BlockSaltWater(ModFluids.saltWater, Material.water);
 
     public static void init() {
         GameRegistry.registerBlock(blockSaltOre, Names.Blocks.SALT_ORE);
         GameRegistry.registerBlock(blockBarrel, ItemBlockBarrel.class, Names.Blocks.BARREL);
-        GameRegistry.registerBlock(saltWater, Names.Fluids.SALT_WATER);
+        GameRegistry.registerBlock(blockSaltWater, Names.Fluids.SALT_WATER);
     }
 
 }
