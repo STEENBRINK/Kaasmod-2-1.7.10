@@ -40,7 +40,7 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         // Using the inserted items
         if (this.getStackInSlot(0) != null) {
             // Turning Water into SaltWater
-            if (this.fluidStack.getFluid() == FluidRegistry.WATER && this.getStackInSlot(0).getItem() == ModItems.itemRawSalt) {
+            if (this.fluidStack.getFluid() == FluidRegistry.WATER && this.getStackInSlot(0).getItem() == ModItems.itemCleanSalt) {
                 this.setInventorySlotContents(0, null);
                 this.fluidStack.fluidID = ModFluids.fluidSaltWater.getID();
                 this.shouldUpdate = true;

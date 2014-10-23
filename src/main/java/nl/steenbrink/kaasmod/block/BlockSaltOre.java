@@ -18,7 +18,7 @@ public class BlockSaltOre extends BlockBasic {
 
     @Override
     public Item getItemDropped(int metadata, Random random, int fortune) {
-        return ModItems.itemRawSalt;
+        return ModItems.itemDirtySalt;
     }
 
     @Override

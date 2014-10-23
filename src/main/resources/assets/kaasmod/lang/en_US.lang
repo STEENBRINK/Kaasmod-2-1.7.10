@@ -1,7 +1,8 @@
 #Items
 item.kaasmod:babyCowStomach.name=Babycow's Stomach
 item.kaasmod:saltWaterBucket.name=Salt Water Bucket
-item.kaasmod:rawSalt.name=Raw Salt
+item.kaasmod:dirtySalt.name=Dirty Salt
+item.kaasmod:cleanSalt.name=Clean Salt
 item.kaasmod:vinegarBucket.name=Vinegar Bucket
 
 #Blocks

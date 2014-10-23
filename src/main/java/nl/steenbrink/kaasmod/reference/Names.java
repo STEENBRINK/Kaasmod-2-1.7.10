@@ -9,9 +9,10 @@ public class Names {
 
     public static class Items {
         public static final String STOMACH = "babyCowStomach";
-        public static final String RAW_SALT = "rawSalt";
+        public static final String CLEAN_SALT = "cleanSalt";
         public static final String SALT_WATER_BUCKET = "saltWaterBucket";
         public static final String VINEGAR_BUCKET = "vinegarBucket";
+        public static final String DIRTY_SALT = "dirtySalt";
     }
 
     public static class Fluids {
