@@ -2,10 +2,9 @@ package nl.steenbrink.kaasmod.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBucket;
 import nl.steenbrink.kaasmod.item.ItemBasic;
-import nl.steenbrink.kaasmod.item.ItemSaltWaterBucket;
-import nl.steenbrink.kaasmod.item.ItemVinegarBucket;
+import nl.steenbrink.kaasmod.item.bucket.ItemSaltWaterBucket;
+import nl.steenbrink.kaasmod.item.bucket.ItemVinegarBucket;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModItems {
