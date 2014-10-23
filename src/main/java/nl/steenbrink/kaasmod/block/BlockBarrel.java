@@ -1,5 +1,6 @@
 package nl.steenbrink.kaasmod.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,6 +23,7 @@ public class BlockBarrel extends BlockContainer {
         super(Material.wood);
         this.setCreativeTab(CreativeTabKaasmod.INSTANCE);
         this.setBlockName(Names.Blocks.BARREL);
+        this.setStepSound(Block.soundTypeWood);
     }
 
     @Override

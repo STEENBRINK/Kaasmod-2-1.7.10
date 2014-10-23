@@ -8,6 +8,7 @@ import nl.steenbrink.kaasmod.block.BlockBarrel;
 import nl.steenbrink.kaasmod.block.BlockKaasmodFluidBase;
 import nl.steenbrink.kaasmod.block.BlockSaltOre;
 import nl.steenbrink.kaasmod.block.BlockSaltWater;
+import nl.steenbrink.kaasmod.item.ItemBlockBarrel;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModBlocks {
@@ -18,7 +19,7 @@ public class ModBlocks {
 
     public static void init() {
         GameRegistry.registerBlock(blockSaltOre, Names.Blocks.SALT_ORE);
-        GameRegistry.registerBlock(blockBarrel, Names.Blocks.BARREL);
+        GameRegistry.registerBlock(blockBarrel, ItemBlockBarrel.class, Names.Blocks.BARREL);
         GameRegistry.registerBlock(saltWater, Names.Fluids.SALT_WATER);
     }
 

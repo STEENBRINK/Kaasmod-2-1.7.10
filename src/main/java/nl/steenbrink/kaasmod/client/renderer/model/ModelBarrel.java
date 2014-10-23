@@ -97,6 +97,19 @@ public class ModelBarrel extends ModelBase {
         ShapeJ.render(f5);
     }
 
+    public void simpleRender(float f5) {
+        ShapeA.render(f5);
+        ShapeB.render(f5);
+        ShapeC.render(f5);
+        ShapeD.render(f5);
+        ShapeE.render(f5);
+        ShapeF.render(f5);
+        ShapeG.render(f5);
+        ShapeH.render(f5);
+        ShapeI.render(f5);
+        ShapeJ.render(f5);
+    }
+
     private void setRotation(ModelRenderer model, float x, float y, float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
