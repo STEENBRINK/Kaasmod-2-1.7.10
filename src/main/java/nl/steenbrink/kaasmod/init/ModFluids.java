@@ -35,10 +35,18 @@ public class ModFluids{
         FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidSaltWater, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemSaltWaterBucket), new ItemStack(Items.bucket));
         FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidMilk, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(Items.milk_bucket), new ItemStack(Items.bucket));
         FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidVinegar, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemVinegarBucket), new ItemStack(Items.bucket));
+        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidLacticAcid, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemLacticAcidBucket), new ItemStack(Items.bucket));
+                FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidRennet, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemRennetBucket), new ItemStack(Items.bucket));
+                        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidCurdledMilk, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemCurdledMilkBucket), new ItemStack(Items.bucket));
+                                FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidProcessedCurdledMilk, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemProcessedCurldedMilkBucket), new ItemStack(Items.bucket));
 
-        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockSaltWater, ModItems.itemSaltWaterBucket);
+                                        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockSaltWater, ModItems.itemSaltWaterBucket);
         BucketHandler.INSTANCE.buckets.put(ModBlocks.blockMilk, Items.milk_bucket);
         BucketHandler.INSTANCE.buckets.put(ModBlocks.blockVinegar, ModItems.itemVinegarBucket);
+        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockLacticAcid, ModItems.itemLacticAcidBucket);
+        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockRennet, ModItems.itemRennetBucket);
+        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockCurdledMilk, ModItems.itemCurdledMilkBucket);
+        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockProcessedCurdledMilk, ModItems.itemProcessedCurldedMilkBucket);
 
         MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
     }
