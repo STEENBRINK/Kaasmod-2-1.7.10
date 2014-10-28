@@ -7,10 +7,7 @@ import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
 import org.lwjgl.opengl.GL11;
 
@@ -129,16 +126,13 @@ import org.lwjgl.opengl.GL11;
         TopRight.render(f5);
     }
 
-    public void renderInternal(int color, IIcon icon, boolean blend)
+    public void renderInternal(int color, IIcon icon)
     {
         Tessellator tessellator = Tessellator.instance;
 
-        if (blend)
-        {
-            GL11.glDisable(GL11.GL_LIGHTING);
-            GL11.glEnable(GL11.GL_BLEND);
-            GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-        }
+        GL11.glDisable(GL11.GL_LIGHTING);
+        GL11.glEnable(GL11.GL_BLEND);
+        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         double length = 1.0D;
         double width = 1.0D;
@@ -159,11 +153,8 @@ import org.lwjgl.opengl.GL11;
         tessellator.addVertexWithUV(x, y, z + length, maxU, minV);
         tessellator.draw();
 
-        if (blend)
-        {
-            GL11.glEnable(GL11.GL_LIGHTING);
-            GL11.glDisable(GL11.GL_BLEND);
-        }
+        GL11.glEnable(GL11.GL_LIGHTING);
+        GL11.glDisable(GL11.GL_BLEND);
     }
 
     public void renderItem(TileEntityBarrel tileEntityBarrel, double x, double y, double z) {
@@ -172,7 +163,10 @@ import org.lwjgl.opengl.GL11;
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 
         float scaleFactor = 1f;
-        float rotationAngle = (float) (720.0 * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
+        float speedMultiplier = 1f;
+        if (tileEntityBarrel.isCrafting())
+            speedMultiplier = 4f;
+        float rotationAngle = (float) (720.0 * speedMultiplier * (System.currentTimeMillis() & 0x3FFFL) / 0x3FFFL);
 
         EntityItem ghostEntityItem = new EntityItem(tileEntityBarrel.getWorldObj());
         ghostEntityItem.hoverStart = 0.0F;

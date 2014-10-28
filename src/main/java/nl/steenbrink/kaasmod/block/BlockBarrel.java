@@ -68,7 +68,7 @@ public class BlockBarrel extends BlockContainer {
         if (tileEntityBarrel == null) return false;
 
         if (entityPlayer.isSneaking()) {
-            if (entityPlayer.getCurrentEquippedItem() == null && tileEntityBarrel.getStackInSlot(0) != null) {
+            if (entityPlayer.getCurrentEquippedItem() == null && tileEntityBarrel.getStackInSlot(0) != null && tileEntityBarrel.canExtractItem(0, null, 0)) {
                 if (entityPlayer.inventory.addItemStackToInventory(tileEntityBarrel.getStackInSlot(0))) {
                     tileEntityBarrel.setInventorySlotContents(0, null);
                 }

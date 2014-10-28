@@ -21,6 +21,9 @@ public class TileEntityRendererBarrel extends TileEntitySpecialRenderer {
     public void renderTileEntityAt(TileEntity te, double x, double y, double z, float scale) {
         TileEntityBarrel tileEntityBarrel = (TileEntityBarrel) te;
 
+        /*
+         * Render the Barrel model with the correct texture over it
+         */
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
         this.bindTexture(new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/models/Barrel.png"));
@@ -30,6 +33,9 @@ public class TileEntityRendererBarrel extends TileEntitySpecialRenderer {
         GL11.glPopMatrix();
         GL11.glPopMatrix();
 
+        /*
+         * Render the internal item
+         */
         if (tileEntityBarrel.getStackInSlot(0) != null) {
             GL11.glPushMatrix();
             this.bindTexture(TextureMap.locationItemsTexture);
@@ -37,14 +43,16 @@ public class TileEntityRendererBarrel extends TileEntitySpecialRenderer {
             GL11.glPopMatrix();
         }
 
+        /*
+         * Render the fluid inside of the barrel
+         */
         if (tileEntityBarrel.fluidStack.amount > 0) {
-            //System.err.println(">> RENDER: " + tileEntityBarrel.fluidStack.getFluid().getName());
             GL11.glPushMatrix();
             float fluidHeight = ((0.90f - 0.13f)/(tileEntityBarrel.fluidCapacity - 1)) * tileEntityBarrel.fluidStack.amount + 0.129229229f;
             GL11.glTranslatef((float)x + 0.5F,(float)y + fluidHeight,(float)z + 0.5F);
             GL11.glScalef(0.9f, 1.0f, 0.9f);
             this.bindTexture(TextureMap.locationBlocksTexture);
-            this.modelBarrel.renderInternal(0xffffffff, tileEntityBarrel.fluidStack.getFluid().getIcon(), true);
+            this.modelBarrel.renderInternal(0xffffffff, tileEntityBarrel.fluidStack.getFluid().getIcon(tileEntityBarrel.fluidStack));
             GL11.glPopMatrix();
         }
 

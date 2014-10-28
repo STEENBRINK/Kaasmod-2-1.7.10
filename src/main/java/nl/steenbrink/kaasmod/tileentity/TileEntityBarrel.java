@@ -3,7 +3,6 @@ package nl.steenbrink.kaasmod.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
@@ -12,8 +11,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
-import nl.steenbrink.kaasmod.init.ModFluids;
-import nl.steenbrink.kaasmod.init.ModItems;
+import nl.steenbrink.kaasmod.init.RecipesBarrel;
 
 public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISidedInventory {
 
@@ -22,11 +20,14 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     }
 
     private boolean shouldUpdate = true;
+    private boolean isCrafting = false;
+    private int craftingTimer = 0;
 
     public FluidStack fluidStack = new FluidStack(0, 0);
-    public int fluidCapacity = 1000;
+    public int fluidCapacity = 8000;
 
     private ItemStack[] inventory = new ItemStack[1];
+
 
     @Override
     public void updateEntity() {
@@ -38,12 +39,28 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         if (this.worldObj.isRemote) return;
 
         // Using the inserted items
-        if (this.getStackInSlot(0) != null) {
-            // Turning Water into SaltWater
-            if (this.fluidStack.getFluid() == FluidRegistry.WATER && this.getStackInSlot(0).getItem() == ModItems.itemCleanSalt) {
-                this.setInventorySlotContents(0, null);
-                this.fluidStack.fluidID = ModFluids.fluidSaltWater.getID();
-                this.shouldUpdate = true;
+        if (this.getStackInSlot(0) != null && !isCrafting) {
+            // Applying crafting possibilities
+            if (RecipesBarrel.INSTANCE.isCrafting(this.fluidStack, this.getStackInSlot(0))) {
+                this.isCrafting = true;
+                this.craftingTimer = RecipesBarrel.INSTANCE.getCraftingDuration(this.fluidStack, this.getStackInSlot(0));
+            }
+        }
+
+        // Updating crafting timer
+        if (isCrafting) {
+            if (this.fluidStack.amount == 0 || getStackInSlot(0) == null) {
+                this.isCrafting = false;
+                this.craftingTimer = 0;
+            } else {
+                craftingTimer--;
+                if (craftingTimer <= 0) {
+                    this.fluidStack = RecipesBarrel.INSTANCE.getOutput(this.fluidStack, this.getStackInSlot(0)).copy();
+                    this.setInventorySlotContents(0, null);
+                    this.isCrafting = false;
+                    this.craftingTimer = 0;
+                    this.shouldUpdate = true;
+                }
             }
         }
     }
@@ -51,6 +68,10 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     @Override
     public void readFromNBT(NBTTagCompound nbtTagCompound) {
         super.readFromNBT(nbtTagCompound);
+
+        // Read the crafting status
+        this.isCrafting = nbtTagCompound.getBoolean("IsCrafting");
+        this.craftingTimer = nbtTagCompound.getInteger("CraftingTimer");
 
         // Read the internal fluidStack
         if (nbtTagCompound.hasKey("Fluid")) {
@@ -74,6 +95,10 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     @Override
     public void writeToNBT(NBTTagCompound nbtTagCompound) {
         super.writeToNBT(nbtTagCompound);
+
+        // Write the crafting status
+        nbtTagCompound.setBoolean("IsCrafting", isCrafting);
+        nbtTagCompound.setInteger("CraftingTimer", craftingTimer);
 
         // Save the internal fluidStack
         if (this.fluidStack.getFluid() != null) {
@@ -109,12 +134,16 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         readFromNBT(tag);
     }
 
+    public boolean isCrafting() {
+        return isCrafting;
+    }
+
     /* --- IFluidHandler --- */
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
-        this.shouldUpdate = true;
-
+        if (!canFill(from, resource.getFluid())) return 0;
         int capacity = fluidCapacity - fluidStack.amount;
+        this.shouldUpdate = true;
 
         if (!doFill) {
             if (resource.fluidID != fluidStack.fluidID && fluidStack.amount > 0) return 0;
@@ -151,9 +180,10 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+        if (!canDrain(from, null)) return new FluidStack(0, 0);
+        if (fluidStack.fluidID == 0) return new FluidStack(0, 0);
         this.shouldUpdate = true;
 
-        if (fluidStack.fluidID == 0) return new FluidStack(0, 0);
         if (!doDrain) {
             if (fluidStack.amount >= maxDrain) {
                 return new FluidStack(FluidRegistry.getFluid(fluidStack.fluidID), maxDrain);
@@ -170,12 +200,12 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public boolean canFill(ForgeDirection from, Fluid fluid) {
-        return true;
+        return !isCrafting;
     }
 
     @Override
     public boolean canDrain(ForgeDirection from, Fluid fluid) {
-        return true;
+        return !isCrafting;
     }
 
     @Override
@@ -191,12 +221,12 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     @Override
     public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
-        return true;
+        return !isCrafting;
     }
 
     @Override
     public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
-        return true;
+        return !isCrafting;
     }
 
     @Override

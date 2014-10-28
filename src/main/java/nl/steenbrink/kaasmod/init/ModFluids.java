@@ -7,6 +7,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import nl.steenbrink.kaasmod.fluid.FluidCrafting;
 import nl.steenbrink.kaasmod.handler.BucketHandler;
 import nl.steenbrink.kaasmod.reference.Names;
 
@@ -18,7 +19,7 @@ public class ModFluids{
     public static Fluid fluidRennet = new Fluid(Names.Fluids.RENNET);
     public static Fluid fluidCurdledMilk = new Fluid(Names.Fluids.CURDLED_MILK);
     public static Fluid fluidProcessedCurdledMilk = new Fluid(Names.Fluids.PROCESSED_CURDLED_MILK);
-    public static Fluid fluidCrafting = new Fluid(Names.Fluids.CRAFTING_FLUID);
+    public static Fluid fluidCrafting = new FluidCrafting(Names.Fluids.CRAFTING_FLUID);
 
     public static void init(){
         FluidRegistry.registerFluid(fluidSaltWater);
