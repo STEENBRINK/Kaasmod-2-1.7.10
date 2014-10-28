@@ -14,120 +14,119 @@ import net.minecraft.world.World;
 import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
 import org.lwjgl.opengl.GL11;
 
-public class ModelBarrel extends ModelBase {
-    private ModelRenderer ShapeA;
-    private ModelRenderer ShapeB;
-    private ModelRenderer ShapeC;
-    private ModelRenderer ShapeD;
-    private ModelRenderer ShapeE;
-    private ModelRenderer ShapeF;
-    private ModelRenderer ShapeG;
-    private ModelRenderer ShapeH;
-    private ModelRenderer ShapeI;
-    private ModelRenderer ShapeJ;
+    public class ModelBarrel extends ModelBase {
+        private final RenderItem customRenderItem;
+        private ModelRenderer TopFront;
+        private ModelRenderer TopLeft;
+        private ModelRenderer TopBack;
+        private ModelRenderer VeryBottom;
+        private ModelRenderer BottomInside;
+        private ModelRenderer SideFront;
+        private ModelRenderer SideBack;
+        private ModelRenderer SideRight;
+        private ModelRenderer SideLeft;
+        private ModelRenderer TopRight;
 
-    private final RenderItem customRenderItem;
+        public ModelBarrel() {
+            customRenderItem = new RenderItem() {
+                @Override
+                public boolean shouldBob() {
+                    return false;
+                }
+            };
+            customRenderItem.setRenderManager(RenderManager.instance);
 
-    public ModelBarrel() {
-        customRenderItem = new RenderItem() {
-            @Override
-            public boolean shouldBob() {
-                return false;
-            }
-        };
-        customRenderItem.setRenderManager(RenderManager.instance);
+            textureWidth = 64;
+            textureHeight = 64;
 
-        textureWidth = 64;
-        textureHeight = 64;
-
-        ShapeA = new ModelRenderer(this, 0, 0);
-        ShapeA.addBox(0F, 0F, 0F, 12, 1, 12);
-        ShapeA.setRotationPoint(-6F, 23F, -6F);
-        ShapeA.setTextureSize(64, 64);
-        ShapeA.mirror = true;
-        setRotation(ShapeA, 0F, 0F, 0F);
-        ShapeB = new ModelRenderer(this, 0, 0);
-        ShapeB.addBox(0F, 0F, 0F, 14, 1, 14);
-        ShapeB.setRotationPoint(-7F, 22F, -7F);
-        ShapeB.setTextureSize(64, 64);
-        ShapeB.mirror = true;
-        setRotation(ShapeB, 0F, 0F, 0F);
-        ShapeC = new ModelRenderer(this, 0, 0);
-        ShapeC.addBox(0F, 0F, 0F, 16, 13, 1);
-        ShapeC.setRotationPoint(-8F, 9F, 7F);
-        ShapeC.setTextureSize(64, 64);
-        ShapeC.mirror = true;
-        setRotation(ShapeC, 0F, 0F, 0F);
-        ShapeD = new ModelRenderer(this, 0, 0);
-        ShapeD.addBox(0F, 0F, 0F, 16, 13, 1);
-        ShapeD.setRotationPoint(-8F, 9F, -8F);
-        ShapeD.setTextureSize(64, 64);
-        ShapeD.mirror = true;
-        setRotation(ShapeD, 0F, 0F, 0F);
-        ShapeE = new ModelRenderer(this, 0, 0);
-        ShapeE.addBox(0F, 0F, 0F, 1, 13, 14);
-        ShapeE.setRotationPoint(7F, 9F, -7F);
-        ShapeE.setTextureSize(64, 64);
-        ShapeE.mirror = true;
-        setRotation(ShapeE, 0F, 0F, 0F);
-        ShapeF = new ModelRenderer(this, 0, 0);
-        ShapeF.addBox(0F, 0F, 0F, 1, 13, 14);
-        ShapeF.setRotationPoint(-8F, 9F, -7F);
-        ShapeF.setTextureSize(64, 64);
-        ShapeF.mirror = true;
-        setRotation(ShapeF, 0F, 0F, 0F);
-        ShapeG = new ModelRenderer(this, 0, 0);
-        ShapeG.addBox(0F, 0F, 0F, 14, 1, 1);
-        ShapeG.setRotationPoint(-7F, 8F, 6F);
-        ShapeG.setTextureSize(64, 64);
-        ShapeG.mirror = true;
-        setRotation(ShapeG, 0F, 0F, 0F);
-        ShapeH = new ModelRenderer(this, 0, 0);
-        ShapeH.addBox(0F, 0F, 0F, 14, 1, 1);
-        ShapeH.setRotationPoint(-7F, 8F, -7F);
-        ShapeH.setTextureSize(64, 64);
-        ShapeH.mirror = true;
-        setRotation(ShapeH, 0F, 0F, 0F);
-        ShapeI = new ModelRenderer(this, 0, 0);
-        ShapeI.addBox(0F, 0F, 0F, 1, 1, 12);
-        ShapeI.setRotationPoint(-7F, 8F, -6F);
-        ShapeI.setTextureSize(64, 64);
-        ShapeI.mirror = true;
-        setRotation(ShapeI, 0F, 0F, 0F);
-        ShapeJ = new ModelRenderer(this, 0, 0);
-        ShapeJ.addBox(0F, 0F, 0F, 1, 1, 12);
-        ShapeJ.setRotationPoint(6F, 8F, -6F);
-        ShapeJ.setTextureSize(64, 64);
-        ShapeJ.mirror = true;
-        setRotation(ShapeJ, 0F, 0F, 0F);
-    }
+            TopFront = new ModelRenderer(this, 34, 62);
+            TopFront.addBox(0F, 0F, 0F, 14, 1, 1);
+            TopFront.setRotationPoint(-7F, 8F, -7F);
+            TopFront.setTextureSize(64, 64);
+            TopFront.mirror = true;
+            setRotation(TopFront, 0F, 0F, 0F);
+            TopLeft = new ModelRenderer(this, 0, 51);
+            TopLeft.addBox(0F, 0F, 0F, 1, 1, 12);
+            TopLeft.setRotationPoint(6F, 8F, -6F);
+            TopLeft.setTextureSize(64, 64);
+            TopLeft.mirror = true;
+            setRotation(TopLeft, 0F, 0F, 0F);
+            TopBack = new ModelRenderer(this, 34, 62);
+            TopBack.addBox(0F, 0F, 0F, 14, 1, 1);
+            TopBack.setRotationPoint(-7F, 8F, 6F);
+            TopBack.setTextureSize(64, 64);
+            TopBack.mirror = true;
+            setRotation(TopBack, 0F, 0F, 0F);
+            VeryBottom = new ModelRenderer(this, 0, 0);
+            VeryBottom.addBox(0F, 0F, 0F, 12, 1, 12);
+            VeryBottom.setRotationPoint(-6F, 23F, -6F);
+            VeryBottom.setTextureSize(64, 64);
+            VeryBottom.mirror = true;
+            setRotation(VeryBottom, 0F, 0F, 0F);
+            BottomInside = new ModelRenderer(this, 0, 13);
+            BottomInside.addBox(0F, 0F, 0F, 14, 1, 14);
+            BottomInside.setRotationPoint(-7F, 22F, -7F);
+            BottomInside.setTextureSize(64, 64);
+            BottomInside.mirror = true;
+            setRotation(BottomInside, 0F, 0F, 0F);
+            SideFront = new ModelRenderer(this, 0, 28);
+            SideFront.addBox(0F, 0F, 0F, 16, 13, 1);
+            SideFront.setRotationPoint(-8F, 9F, -8F);
+            SideFront.setTextureSize(64, 64);
+            SideFront.mirror = true;
+            setRotation(SideFront, 0F, 0F, 0F);
+            SideBack = new ModelRenderer(this, 0, 28);
+            SideBack.addBox(0F, 0F, 0F, 16, 13, 1);
+            SideBack.setRotationPoint(-8F, 9F, 7F);
+            SideBack.setTextureSize(64, 64);
+            SideBack.mirror = true;
+            setRotation(SideBack, 0F, 0F, 0F);
+            SideRight = new ModelRenderer(this, 34, 28);
+            SideRight.addBox(0F, 0F, 0F, 1, 13, 14);
+            SideRight.setRotationPoint(-8F, 9F, -7F);
+            SideRight.setTextureSize(64, 64);
+            SideRight.mirror = true;
+            setRotation(SideRight, 0F, 0F, 0F);
+            SideLeft = new ModelRenderer(this, 34, 28);
+            SideLeft.addBox(0F, 0F, 0F, 1, 13, 14);
+            SideLeft.setRotationPoint(7F, 9F, -7F);
+            SideLeft.setTextureSize(64, 64);
+            SideLeft.mirror = true;
+            setRotation(SideLeft, 0F, 0F, 0F);
+            TopRight = new ModelRenderer(this, 0, 51);
+            TopRight.addBox(0F, 0F, 0F, 1, 1, 12);
+            TopRight.setRotationPoint(-7F, 8F, -6F);
+            TopRight.setTextureSize(64, 64);
+            TopRight.mirror = true;
+            setRotation(TopRight, 0F, 0F, 0F);
+        }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        ShapeA.render(f5);
-        ShapeB.render(f5);
-        ShapeC.render(f5);
-        ShapeD.render(f5);
-        ShapeE.render(f5);
-        ShapeF.render(f5);
-        ShapeG.render(f5);
-        ShapeH.render(f5);
-        ShapeI.render(f5);
-        ShapeJ.render(f5);
+        TopFront.render(f5);
+        TopLeft.render(f5);
+        TopBack.render(f5);
+        VeryBottom.render(f5);
+        BottomInside.render(f5);
+        SideFront.render(f5);
+        SideBack.render(f5);
+        SideRight.render(f5);
+        SideLeft.render(f5);
+        TopRight.render(f5);
     }
 
-    public void simpleRender(float f5) {
-        ShapeA.render(f5);
-        ShapeB.render(f5);
-        ShapeC.render(f5);
-        ShapeD.render(f5);
-        ShapeE.render(f5);
-        ShapeF.render(f5);
-        ShapeG.render(f5);
-        ShapeH.render(f5);
-        ShapeI.render(f5);
-        ShapeJ.render(f5);
+    public void simpleRender(float f5){
+        TopFront.render(f5);
+        TopLeft.render(f5);
+        TopBack.render(f5);
+        VeryBottom.render(f5);
+        BottomInside.render(f5);
+        SideFront.render(f5);
+        SideBack.render(f5);
+        SideRight.render(f5);
+        SideLeft.render(f5);
+        TopRight.render(f5);
     }
 
     public void renderInternal(int color, IIcon icon, boolean blend)
@@ -189,7 +188,9 @@ public class ModelBarrel extends ModelBase {
         GL11.glDisable(GL11.GL_BLEND);
     }
 
-    private void setRotation(ModelRenderer model, float x, float y, float z) {
+
+    private void setRotation(ModelRenderer model, float x, float y, float z)
+    {
         model.rotateAngleX = x;
         model.rotateAngleY = y;
         model.rotateAngleZ = z;
