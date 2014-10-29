@@ -20,12 +20,20 @@ public class RecipesBarrel {
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new ItemStack(ModItems.itemCleanSalt, 1),
                 new FluidStack(ModFluids.fluidSaltWater, 1000),
-                20 * 10);
+                null,
+                10 * 20);
         INSTANCE.addFluidItemCrafting(
                 FluidCrafting.createCraftingFluid(new FluidStack(ModFluids.fluidSaltWater, 1000), new FluidStack(ModFluids.fluidVinegar, 10)),
                 new ItemStack(ModItems.itemStomachSlice, 1),
                 new FluidStack(ModFluids.fluidRennet, 1000),
-                20 * 60);
+                null,
+                60 * 20);
+        INSTANCE.addFluidItemCrafting(
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new ItemStack(ModItems.itemDirtySalt, 1),
+                new FluidStack(0, 0),
+                new ItemStack(ModItems.itemCleanSalt, 1),
+                30 * 20);
 
     }
 
@@ -57,8 +65,8 @@ public class RecipesBarrel {
     }
 
     /* Fluid Item crafting recipes */
-    public void addFluidItemCrafting(FluidStack primaryFluid, ItemStack primaryItem, FluidStack outputFluid, int craftingDuration) {
-        fluidItemCraftings.add(new RecipeFluidItemCrafting(primaryFluid, primaryItem, outputFluid, craftingDuration));
+    public void addFluidItemCrafting(FluidStack primaryFluid, ItemStack primaryItem, FluidStack outputFluid, ItemStack outputItem, int craftingDuration) {
+        fluidItemCraftings.add(new RecipeFluidItemCrafting(primaryFluid, primaryItem, outputFluid, outputItem, craftingDuration));
     }
     public boolean isCrafting(FluidStack primaryFluid, ItemStack primaryItem) {
         for (RecipeFluidItemCrafting recipeFluidItemCrafting : fluidItemCraftings) {
@@ -66,10 +74,18 @@ public class RecipesBarrel {
         }
         return false;
     }
-    public FluidStack getOutput(FluidStack primaryFluid, ItemStack primaryItem) {
+    public FluidStack getOutputFluid(FluidStack primaryFluid, ItemStack primaryItem) {
         for (RecipeFluidItemCrafting recipeFluidItemCrafting : fluidItemCraftings) {
             if (recipeFluidItemCrafting.isCrafting(primaryFluid, primaryItem)) {
-                return recipeFluidItemCrafting.getOutput();
+                return recipeFluidItemCrafting.getOutputFluid();
+            }
+        }
+        return null;
+    }
+    public ItemStack getOutputItem(FluidStack primaryFluid, ItemStack primaryItem) {
+        for (RecipeFluidItemCrafting recipeFluidItemCrafting : fluidItemCraftings) {
+            if (recipeFluidItemCrafting.isCrafting(primaryFluid, primaryItem)) {
+                return recipeFluidItemCrafting.getOutputItem();
             }
         }
         return null;
@@ -108,12 +124,14 @@ public class RecipesBarrel {
         private FluidStack primaryFluid;
         private ItemStack primaryItem;
         private FluidStack outputFluid;
+        private ItemStack outputItem;
         private int craftingDuration;
 
-        public RecipeFluidItemCrafting(FluidStack primaryFluid, ItemStack primaryItem, FluidStack outputFluid, int craftingDuration) {
+        public RecipeFluidItemCrafting(FluidStack primaryFluid, ItemStack primaryItem, FluidStack outputFluid, ItemStack outputItem, int craftingDuration) {
             this.primaryFluid = primaryFluid;
             this.primaryItem = primaryItem;
             this.outputFluid = outputFluid;
+            this.outputItem = outputItem;
             this.craftingDuration = craftingDuration;
         }
 
@@ -121,8 +139,11 @@ public class RecipesBarrel {
             return this.primaryFluid.isFluidStackIdentical(primaryFluid) && this.primaryItem.isItemEqual(primaryItem);
         }
 
-        public FluidStack getOutput() {
+        public FluidStack getOutputFluid() {
             return this.outputFluid;
+        }
+        public ItemStack getOutputItem() {
+            return this.outputItem;
         }
 
         public int getCraftingDuration() {

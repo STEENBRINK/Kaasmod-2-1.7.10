@@ -11,6 +11,8 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import nl.steenbrink.kaasmod.init.ModFluids;
+import nl.steenbrink.kaasmod.init.Recipes;
 import nl.steenbrink.kaasmod.init.RecipesBarrel;
 
 public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISidedInventory {
@@ -28,15 +30,14 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
 
     private ItemStack[] inventory = new ItemStack[1];
 
-
     @Override
     public void updateEntity() {
+        super.updateEntity();
+        if (this.worldObj.isRemote) return;
         if (this.shouldUpdate) {
             this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             this.shouldUpdate = false;
         }
-        super.updateEntity();
-        if (this.worldObj.isRemote) return;
 
         // Using the inserted items
         if (this.getStackInSlot(0) != null && !isCrafting) {
@@ -55,8 +56,9 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
             } else {
                 craftingTimer--;
                 if (craftingTimer <= 0) {
-                    this.fluidStack = RecipesBarrel.INSTANCE.getOutput(this.fluidStack, this.getStackInSlot(0)).copy();
-                    this.setInventorySlotContents(0, null);
+                    ItemStack outputItem = RecipesBarrel.INSTANCE.getOutputItem(this.fluidStack, this.getStackInSlot(0)).copy();
+                    this.fluidStack = RecipesBarrel.INSTANCE.getOutputFluid(this.fluidStack, this.getStackInSlot(0)).copy();
+                    this.setInventorySlotContents(0, outputItem);
                     this.isCrafting = false;
                     this.craftingTimer = 0;
                     this.shouldUpdate = true;
@@ -77,6 +79,8 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         if (nbtTagCompound.hasKey("Fluid")) {
             NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
             this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
+        } else {
+            this.fluidStack = new FluidStack(0, 0);
         }
 
         // Read the inventory
@@ -181,6 +185,7 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     @Override
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
         if (!canDrain(from, null)) return new FluidStack(0, 0);
+        if (fluidStack.getFluid() == ModFluids.fluidCrafting) return new FluidStack(0, 0);
         if (fluidStack.fluidID == 0) return new FluidStack(0, 0);
         this.shouldUpdate = true;
 
