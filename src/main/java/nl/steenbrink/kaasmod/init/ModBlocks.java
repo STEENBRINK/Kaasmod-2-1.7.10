@@ -6,6 +6,8 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import nl.steenbrink.kaasmod.block.*;
 import nl.steenbrink.kaasmod.block.fluid.*;
+import nl.steenbrink.kaasmod.block.tile.BlockBarrel;
+import nl.steenbrink.kaasmod.block.tile.BlockStirlingMachine;
 import nl.steenbrink.kaasmod.item.ItemBlockBarrel;
 import nl.steenbrink.kaasmod.reference.Names;
 
@@ -13,6 +15,7 @@ public class ModBlocks {
 
     public static final Block blockSaltOre = new BlockSaltOre();
     public static final Block blockBarrel = new BlockBarrel();
+    public static final Block blockStirlingMachine = new BlockStirlingMachine();
     public static final BlockFluidClassic blockSaltWater = new BlockSaltWater(ModFluids.fluidSaltWater, Material.water);
     public static final BlockFluidClassic blockMilk = new BlockMilk(ModFluids.fluidMilk, Material.water);
     public static final BlockFluidClassic blockVinegar = new BlockVinegar(ModFluids.fluidVinegar, Material.water);
@@ -32,6 +35,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(blockRennet, Names.Fluids.RENNET);
         GameRegistry.registerBlock(blockCurdledMilk, Names.Fluids.CURDLED_MILK);
         GameRegistry.registerBlock(blockProcessedCurdledMilk, Names.Fluids.PROCESSED_CURDLED_MILK);
+        GameRegistry.registerBlock(blockStirlingMachine, Names.Blocks.STIRLING_MACHINE);
     }
 
 }
