@@ -1,5 +1,6 @@
 package nl.steenbrink.kaasmod.init;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -13,7 +14,7 @@ public class RecipesBarrel {
         /* Mixing recipes */
         INSTANCE.addFluidMixing(
                 new FluidStack(ModFluids.fluidSaltWater, 1000),
-                new FluidStack(ModFluids.fluidVinegar, 10));
+                new FluidStack(ModFluids.fluidVinegar, 1000));
 
         /* Item-Fluid crafting recipes */
         INSTANCE.addFluidItemCrafting(
@@ -23,7 +24,13 @@ public class RecipesBarrel {
                 null,
                 10 * 20);
         INSTANCE.addFluidItemCrafting(
-                FluidCrafting.createCraftingFluid(new FluidStack(ModFluids.fluidSaltWater, 1000), new FluidStack(ModFluids.fluidVinegar, 10)),
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new ItemStack(Items.apple, 1),
+                new FluidStack(ModFluids.fluidVinegar, 1000),
+                null,
+                10 * 20);
+        INSTANCE.addFluidItemCrafting(
+                FluidCrafting.createCraftingFluid(new FluidStack(ModFluids.fluidSaltWater, 1000), new FluidStack(ModFluids.fluidVinegar, 1000)),
                 new ItemStack(ModItems.itemStomachSlice, 1),
                 new FluidStack(ModFluids.fluidRennet, 1000),
                 null,
@@ -31,7 +38,7 @@ public class RecipesBarrel {
         INSTANCE.addFluidItemCrafting(
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new ItemStack(ModItems.itemDirtySalt, 1),
-                new FluidStack(0, 0),
+                null,
                 new ItemStack(ModItems.itemCleanSalt, 1),
                 30 * 20);
 
@@ -55,13 +62,13 @@ public class RecipesBarrel {
         }
         return false;
     }
-    public FluidStack getOutput(FluidStack primaryFluid, FluidStack secondaryFluid) {
+    public FluidStack getOutputFluid(FluidStack primaryFluid, FluidStack secondaryFluid) {
         for (RecipeFluidMixing recipeFluidMixing : fluidMixings) {
             if (recipeFluidMixing.isCrafting(primaryFluid, secondaryFluid)) {
                 return recipeFluidMixing.getOutput();
             }
         }
-        return null;
+        return new FluidStack(0, 0);
     }
 
     /* Fluid Item crafting recipes */
@@ -80,7 +87,7 @@ public class RecipesBarrel {
                 return recipeFluidItemCrafting.getOutputFluid();
             }
         }
-        return null;
+        return new FluidStack(0, 0);
     }
     public ItemStack getOutputItem(FluidStack primaryFluid, ItemStack primaryItem) {
         for (RecipeFluidItemCrafting recipeFluidItemCrafting : fluidItemCraftings) {
@@ -111,7 +118,8 @@ public class RecipesBarrel {
         }
 
         public boolean isCrafting(FluidStack primaryFluid, FluidStack secondaryFluid) {
-            return this.primaryFluid.isFluidStackIdentical(primaryFluid) && this.secondaryFluid.isFluidStackIdentical(secondaryFluid);
+            return (this.primaryFluid.isFluidStackIdentical(primaryFluid) && this.secondaryFluid.isFluidStackIdentical(secondaryFluid))
+                    || (this.primaryFluid.isFluidStackIdentical(secondaryFluid) && this.secondaryFluid.isFluidStackIdentical(primaryFluid));
         }
 
         public FluidStack getOutput() {

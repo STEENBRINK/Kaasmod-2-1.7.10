@@ -12,7 +12,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import nl.steenbrink.kaasmod.init.ModFluids;
-import nl.steenbrink.kaasmod.init.Recipes;
 import nl.steenbrink.kaasmod.init.RecipesBarrel;
 
 public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISidedInventory {
@@ -26,18 +25,18 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     private int craftingTimer = 0;
 
     public FluidStack fluidStack = new FluidStack(0, 0);
-    public int fluidCapacity = 8000;
+    public int fluidCapacity = 1000;
 
     private ItemStack[] inventory = new ItemStack[1];
 
     @Override
     public void updateEntity() {
-        super.updateEntity();
-        if (this.worldObj.isRemote) return;
         if (this.shouldUpdate) {
             this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             this.shouldUpdate = false;
         }
+        super.updateEntity();
+        if (this.worldObj.isRemote) return;
 
         // Using the inserted items
         if (this.getStackInSlot(0) != null && !isCrafting) {
@@ -55,10 +54,11 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
                 this.craftingTimer = 0;
             } else {
                 craftingTimer--;
+                if (craftingTimer % 20 == 0) this.shouldUpdate = true;
                 if (craftingTimer <= 0) {
-                    ItemStack outputItem = RecipesBarrel.INSTANCE.getOutputItem(this.fluidStack, this.getStackInSlot(0)).copy();
+                    ItemStack outputItem = RecipesBarrel.INSTANCE.getOutputItem(this.fluidStack, this.getStackInSlot(0));
                     this.fluidStack = RecipesBarrel.INSTANCE.getOutputFluid(this.fluidStack, this.getStackInSlot(0)).copy();
-                    this.setInventorySlotContents(0, outputItem);
+                    this.setInventorySlotContents(0, outputItem == null ? null : outputItem.copy());
                     this.isCrafting = false;
                     this.craftingTimer = 0;
                     this.shouldUpdate = true;
@@ -150,9 +150,18 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
         this.shouldUpdate = true;
 
         if (!doFill) {
+            if (RecipesBarrel.INSTANCE.isCrafting(this.fluidStack, resource)) {
+                return resource.amount;
+            }
+
             if (resource.fluidID != fluidStack.fluidID && fluidStack.amount > 0) return 0;
             return Math.min(resource.amount, capacity);
         } else {
+            if (RecipesBarrel.INSTANCE.isCrafting(this.fluidStack, resource)) {
+                this.fluidStack = RecipesBarrel.INSTANCE.getOutputFluid(this.fluidStack, resource).copy();
+                return resource.amount;
+            }
+
             if (fluidStack.amount == 0) {
                 if (resource.fluidID != fluidStack.fluidID) {
                     fluidStack = new FluidStack(resource.fluidID, resource.amount);
