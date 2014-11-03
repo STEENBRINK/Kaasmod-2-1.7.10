@@ -163,20 +163,13 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
             }
 
             if (fluidStack.amount == 0) {
-                if (resource.fluidID != fluidStack.fluidID) {
-                    fluidStack = new FluidStack(resource.fluidID, resource.amount);
-                } else {
-                    fluidStack.amount = resource.amount;
-                }
-                return resource.amount;
+                int insertAmount = Math.min(resource.amount, fluidCapacity);
+                fluidStack = new FluidStack(resource.fluidID, insertAmount);
+                return insertAmount;
             } else if (resource.fluidID == fluidStack.fluidID) {
-                if (capacity >= resource.amount) {
-                    fluidStack.amount += resource.amount;
-                    return resource.amount;
-                } else {
-                    fluidStack.amount = fluidCapacity;
-                    return capacity;
-                }
+                int insertAmount = Math.min(resource.amount, capacity);
+                fluidStack.amount += insertAmount;
+                return insertAmount;
             }
         }
 
@@ -195,19 +188,15 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
         if (!canDrain(from, null)) return new FluidStack(0, 0);
         if (fluidStack.getFluid() == ModFluids.fluidCrafting) return new FluidStack(0, 0);
-        if (fluidStack.fluidID == 0) return new FluidStack(0, 0);
+        if (fluidStack.fluidID == 0 || fluidStack.amount == 0) return new FluidStack(0, 0);
         this.shouldUpdate = true;
 
         if (!doDrain) {
-            if (fluidStack.amount >= maxDrain) {
-                return new FluidStack(FluidRegistry.getFluid(fluidStack.fluidID), maxDrain);
-            } else {
-                return new FluidStack(FluidRegistry.getFluid(fluidStack.fluidID), fluidStack.amount);
-            }
+            return new FluidStack(FluidRegistry.getFluid(fluidStack.fluidID), Math.min(maxDrain, fluidStack.amount));
         } else {
             int drainAmount = Math.min(fluidStack.amount, maxDrain);
             FluidStack drained = new FluidStack(FluidRegistry.getFluid(fluidStack.fluidID), drainAmount);
-            fluidStack.amount -= maxDrain;
+            fluidStack.amount -= drainAmount;
             return drained;
         }
     }
