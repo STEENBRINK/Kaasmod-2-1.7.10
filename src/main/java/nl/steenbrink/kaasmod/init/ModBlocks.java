@@ -9,6 +9,7 @@ import nl.steenbrink.kaasmod.block.fluid.*;
 import nl.steenbrink.kaasmod.block.tile.BlockBarrel;
 import nl.steenbrink.kaasmod.block.tile.BlockStirlingMachine;
 import nl.steenbrink.kaasmod.item.ItemBlockBarrel;
+import nl.steenbrink.kaasmod.item.ItemBlockStirlingMachine;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModBlocks {
@@ -22,7 +23,7 @@ public class ModBlocks {
     public static final BlockFluidClassic blockLacticAcid = new BlockLacticAcid(ModFluids.fluidLacticAcid, Material.water);
     public static final BlockFluidClassic blockRennet = new BlockRennet(ModFluids.fluidRennet, Material.water);
     public static final BlockFluidClassic blockCurdledMilk = new BlockCurdledMilk(ModFluids.fluidCurdledMilk, Material.water);
-    public static final BlockFluidClassic blockProcessedCurdledMilk = new BlockProcessedCurdledMilk(ModFluids.fluidProcessedCurdledMilk, Material.water);
+    public static final BlockFluidClassic blockCurd = new BlockCurd(ModFluids.fluidCurd, Material.water);
 
 
     public static void init() {
@@ -34,8 +35,8 @@ public class ModBlocks {
         GameRegistry.registerBlock(blockLacticAcid, Names.Fluids.LACTIC_ACID);
         GameRegistry.registerBlock(blockRennet, Names.Fluids.RENNET);
         GameRegistry.registerBlock(blockCurdledMilk, Names.Fluids.CURDLED_MILK);
-        GameRegistry.registerBlock(blockProcessedCurdledMilk, Names.Fluids.PROCESSED_CURDLED_MILK);
-        GameRegistry.registerBlock(blockStirlingMachine, Names.Blocks.STIRLING_MACHINE);
+        GameRegistry.registerBlock(blockCurd, Names.Fluids.CURD);
+        GameRegistry.registerBlock(blockStirlingMachine, ItemBlockStirlingMachine.class, Names.Blocks.STIRLING_MACHINE);
     }
 
 }

@@ -93,7 +93,7 @@ public class TileEntityBarrel extends TileEntity implements IFluidHandler, ISide
                 this.inventory[j] = ItemStack.loadItemStackFromNBT(tagCompound);
             }
         }
-
+        this.shouldUpdate = true;
     }
 
     @Override

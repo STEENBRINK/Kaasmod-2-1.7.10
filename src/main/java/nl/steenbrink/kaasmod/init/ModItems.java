@@ -16,7 +16,7 @@ public class ModItems {
     public static final Item itemLacticAcidBucket = new ItemLacticAcidBucket(ModBlocks.blockLacticAcid);
     public static final Item itemRennetBucket = new ItemRennetBucket(ModBlocks.blockRennet);
     public static final Item itemCurdledMilkBucket = new ItemCurdledMilkBucket(ModBlocks.blockCurdledMilk);
-    public static final Item itemProcessedCurldedMilkBucket = new ItemProcessedCurdledMilkBucket(ModBlocks.blockProcessedCurdledMilk);
+    public static final Item itemCurdBucket = new ItemCurdBucket(ModBlocks.blockCurd);
     public static final Item itemDirtySalt = new ItemBasic().setUnlocalizedName(Names.Items.DIRTY_SALT);
     public static final Item itemKnife = new ItemKnife();
     public static final Item itemStomachSlice = new ItemBasic().setUnlocalizedName(Names.Items.STOMACH_SLICE);
@@ -34,7 +34,7 @@ public class ModItems {
         GameRegistry.registerItem(itemLacticAcidBucket, Names.Items.LACTIC_ACID_BUCKET);
         GameRegistry.registerItem(itemRennetBucket, Names.Items.RENNET_BUCKET);
         GameRegistry.registerItem(itemCurdledMilkBucket, Names.Items.CURDLED_MILK_BUCKET);
-        GameRegistry.registerItem(itemProcessedCurldedMilkBucket, Names.Items.PROCESSED_CURDLED_MILK_BUCKET);
+        GameRegistry.registerItem(itemCurdBucket, Names.Items.CURD_BUCKET);
     }
 
 }

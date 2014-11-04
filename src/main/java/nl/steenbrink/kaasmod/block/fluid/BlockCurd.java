@@ -4,11 +4,11 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fluids.Fluid;
 import nl.steenbrink.kaasmod.reference.Names;
 
-public class BlockProcessedCurdledMilk extends BlockKaasmodFluidBase
+public class BlockCurd extends BlockKaasmodFluidBase
 {
-    public BlockProcessedCurdledMilk(Fluid fluid, Material material)
+    public BlockCurd(Fluid fluid, Material material)
     {
         super(fluid, material);
-        this.setBlockName(Names.Fluids.PROCESSED_CURDLED_MILK);
+        this.setBlockName(Names.Fluids.CURD);
     }
 }

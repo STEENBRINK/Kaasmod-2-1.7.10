@@ -10,7 +10,7 @@ item.kaasmod:breadSlice.name=Bread Slice
 item.kaasmod:lacticAcidBucket.name=Lactic Acid Bucket
 item.kaasmod:rennetBucket.name=Rennet Bucket
 item.kaasmod:curdledMilkBucket.name=Curdled Milk Bucket
-item.kaasmod:processedCurdledMilkBucket.name=Processed Curdled Milk Bucket
+item.kaasmod:curdBucket.name=Curd Bucket
 
 #Blocks
 tile.kaasmod:barrel.name=Barrel

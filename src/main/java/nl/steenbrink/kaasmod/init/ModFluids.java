@@ -18,7 +18,7 @@ public class ModFluids{
     public static Fluid fluidLacticAcid = new Fluid(Names.Fluids.LACTIC_ACID);
     public static Fluid fluidRennet = new Fluid(Names.Fluids.RENNET);
     public static Fluid fluidCurdledMilk = new Fluid(Names.Fluids.CURDLED_MILK);
-    public static Fluid fluidProcessedCurdledMilk = new Fluid(Names.Fluids.PROCESSED_CURDLED_MILK);
+    public static Fluid fluidCurd = new Fluid(Names.Fluids.CURD);
     public static Fluid fluidCrafting = new FluidCrafting(Names.Fluids.CRAFTING_FLUID);
 
     public static void init(){
@@ -28,7 +28,7 @@ public class ModFluids{
         FluidRegistry.registerFluid(fluidLacticAcid);
         FluidRegistry.registerFluid(fluidRennet);
         FluidRegistry.registerFluid(fluidCurdledMilk);
-        FluidRegistry.registerFluid(fluidProcessedCurdledMilk);
+        FluidRegistry.registerFluid(fluidCurd);
         FluidRegistry.registerFluid(fluidCrafting);
     }
 
@@ -39,7 +39,7 @@ public class ModFluids{
         FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidLacticAcid, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemLacticAcidBucket), new ItemStack(Items.bucket));
         FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidRennet, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemRennetBucket), new ItemStack(Items.bucket));
         FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidCurdledMilk, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemCurdledMilkBucket), new ItemStack(Items.bucket));
-        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidProcessedCurdledMilk, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemProcessedCurldedMilkBucket), new ItemStack(Items.bucket));
+        FluidContainerRegistry.registerFluidContainer(new FluidStack(fluidCurd, FluidContainerRegistry.BUCKET_VOLUME), new ItemStack(ModItems.itemCurdBucket), new ItemStack(Items.bucket));
 
         BucketHandler.INSTANCE.buckets.put(ModBlocks.blockSaltWater, ModItems.itemSaltWaterBucket);
         BucketHandler.INSTANCE.buckets.put(ModBlocks.blockMilk, Items.milk_bucket);
@@ -47,7 +47,7 @@ public class ModFluids{
         BucketHandler.INSTANCE.buckets.put(ModBlocks.blockLacticAcid, ModItems.itemLacticAcidBucket);
         BucketHandler.INSTANCE.buckets.put(ModBlocks.blockRennet, ModItems.itemRennetBucket);
         BucketHandler.INSTANCE.buckets.put(ModBlocks.blockCurdledMilk, ModItems.itemCurdledMilkBucket);
-        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockProcessedCurdledMilk, ModItems.itemProcessedCurldedMilkBucket);
+        BucketHandler.INSTANCE.buckets.put(ModBlocks.blockCurd, ModItems.itemCurdBucket);
 
         MinecraftForge.EVENT_BUS.register(BucketHandler.INSTANCE);
     }
