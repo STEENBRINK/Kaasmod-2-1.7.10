@@ -1,5 +1,11 @@
 package nl.steenbrink.kaasmod.tileentity;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
@@ -40,7 +46,7 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
 
         // Updating crafting timer
         if (isCrafting) {
-            if (this.fluidStack.amount == 0) {
+            if (this.fluidStack == null || this.fluidStack.amount == 0) { // IDEA keeps bitching about this.fluidstack possibly being null, athough it is impossible
                 this.isCrafting = false;
                 this.craftingTimer = 0;
             } else {
@@ -56,6 +62,55 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
         }
     }
 
+     @Override
+    public void readFromNBT(NBTTagCompound nbtTagCompound) {
+        super.readFromNBT(nbtTagCompound);
+
+        // Read the crafting status
+        this.isCrafting = nbtTagCompound.getBoolean("IsCrafting");
+        this.craftingTimer = nbtTagCompound.getInteger("CraftingTimer");
+
+        // Read the internal fluidStack
+        if (nbtTagCompound.hasKey("Fluid")) {
+            NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
+            this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
+        } else {
+            this.fluidStack = new FluidStack(0, 0);
+        }
+
+        this.shouldUpdate = true;
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbtTagCompound) {
+        super.writeToNBT(nbtTagCompound);
+
+        // Write the crafting status
+        nbtTagCompound.setBoolean("IsCrafting", isCrafting);
+        nbtTagCompound.setInteger("CraftingTimer", craftingTimer);
+
+        // Save the internal fluidStack
+        if (this.fluidStack.getFluid() != null) {
+            NBTTagCompound fluidCompound = new NBTTagCompound();
+            this.fluidStack.writeToNBT(fluidCompound);
+            nbtTagCompound.setTag("Fluid", fluidCompound);
+        }
+    }
+
+    @Override
+    public Packet getDescriptionPacket() {
+        NBTTagCompound tag = new NBTTagCompound();
+        this.writeToNBT(tag);
+
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, this.blockMetadata, tag);
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
+        NBTTagCompound tag = pkt.func_148857_g();
+        readFromNBT(tag);
+    }
+
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill)
     {
@@ -64,10 +119,10 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
 
         if (!canFill(from, resource.getFluid())) return 0;
         if (resource.getFluid() != ModFluids.fluidCurdledMilk) return 0;
-        if (from != ForgeDirection.NORTH) return 0;
+        //if (from != ForgeDirection.NORTH) return 0;
 
         if (!doFill) {
-            if (resource.getFluid() != ModFluids.fluidCurdledMilk || fluidStack.getFluid() != ModFluids.fluidCurdledMilk) return 0;
+            //if (resource.getFluid() != ModFluids.fluidCurdledMilk || fluidStack.getFluid() != ModFluids.fluidCurdledMilk) return 0;
             System.out.println("HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOI");
             return Math.min(resource.amount, capacity);
         } else {
@@ -91,7 +146,7 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
     {
-        if (from != ForgeDirection.SOUTH) return null;
+        //if (from != ForgeDirection.SOUTH) return null;
         if (resource == null || !resource.isFluidEqual(fluidStack)) return null;
 
         return this.drain(from, resource.amount, doDrain);

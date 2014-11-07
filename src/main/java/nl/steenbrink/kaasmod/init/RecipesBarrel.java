@@ -65,7 +65,8 @@ public class RecipesBarrel {
     public FluidStack getOutputFluid(FluidStack primaryFluid, FluidStack secondaryFluid) {
         for (RecipeFluidMixing recipeFluidMixing : fluidMixings) {
             if (recipeFluidMixing.isCrafting(primaryFluid, secondaryFluid)) {
-                return recipeFluidMixing.getOutput();
+                FluidStack outputFluid = recipeFluidMixing.getOutput();
+                return outputFluid == null ? new FluidStack(0, 0) : outputFluid;
             }
         }
         return new FluidStack(0, 0);
@@ -84,7 +85,8 @@ public class RecipesBarrel {
     public FluidStack getOutputFluid(FluidStack primaryFluid, ItemStack primaryItem) {
         for (RecipeFluidItemCrafting recipeFluidItemCrafting : fluidItemCraftings) {
             if (recipeFluidItemCrafting.isCrafting(primaryFluid, primaryItem)) {
-                return recipeFluidItemCrafting.getOutputFluid();
+                FluidStack outputFluid = recipeFluidItemCrafting.getOutputFluid();
+                return outputFluid == null ? new FluidStack(0, 0) : outputFluid;
             }
         }
         return new FluidStack(0, 0);

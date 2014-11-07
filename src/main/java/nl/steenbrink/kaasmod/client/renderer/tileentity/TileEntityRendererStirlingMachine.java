@@ -33,7 +33,7 @@ public class TileEntityRendererStirlingMachine extends TileEntitySpecialRenderer
 
         if (tileEntityStirlingMachine.fluidStack.amount > 0) {
             GL11.glPushMatrix();
-            float fluidHeight = ((0.90f - 0.13f) / (tileEntityStirlingMachine.fluidCapacity - 1)) * tileEntityStirlingMachine.fluidStack.amount + 0.129229229f;
+            float fluidHeight = ((0.50f - 0.13f) / (tileEntityStirlingMachine.fluidCapacity - 1)) * tileEntityStirlingMachine.fluidStack.amount + 0.129f;
             GL11.glTranslatef((float) x + 0.5F, (float) y + fluidHeight, (float) z + 0.5F);
             GL11.glScalef(0.9f, 1.0f, 0.9f);
             this.bindTexture(TextureMap.locationBlocksTexture);
