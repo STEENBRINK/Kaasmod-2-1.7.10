@@ -15,6 +15,15 @@ public class RecipesBarrel {
         INSTANCE.addFluidMixing(
                 new FluidStack(ModFluids.fluidSaltWater, 1000),
                 new FluidStack(ModFluids.fluidVinegar, 1000));
+        INSTANCE.addFluidMixing(
+                new FluidStack(ModFluids.fluidMilk, 1000),
+                new FluidStack(ModFluids.fluidRennet, 1000),
+                FluidCrafting.createCraftingFluid(new FluidStack(ModFluids.fluidMilk, 1000), new FluidStack(ModFluids.fluidRennet, 1000)));
+        INSTANCE.addFluidMixing(
+                FluidCrafting.createCraftingFluid(new FluidStack(ModFluids.fluidMilk, 1000), new FluidStack(ModFluids.fluidRennet, 1000)),
+                new FluidStack(ModFluids.fluidLacticAcid, 1000),
+                new FluidStack(ModFluids.fluidCurdledMilk, 1000)
+        );
 
         /* Item-Fluid crafting recipes */
         INSTANCE.addFluidItemCrafting(
@@ -41,7 +50,6 @@ public class RecipesBarrel {
                 null,
                 new ItemStack(ModItems.itemCleanSalt, 1),
                 30 * 20);
-
     }
 
     public static RecipesBarrel INSTANCE = new RecipesBarrel();
