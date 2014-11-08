@@ -51,7 +51,7 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
                 craftingTimer--;
                 if (craftingTimer % 20 == 0) {
                     this.shouldUpdate = true;
-                    System.out.println("Updated!");
+                    //System.out.println("Updated!");
                 }
                 if (craftingTimer <= 0) {
                     this.fluidStack = new FluidStack(ModFluids.fluidCurd, fluidStack.amount);
