@@ -1,8 +1,6 @@
 package nl.steenbrink.kaasmod.tileentity;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -122,8 +120,6 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
         //if (from != ForgeDirection.NORTH) return 0;
 
         if (!doFill) {
-            //if (resource.getFluid() != ModFluids.fluidCurdledMilk || fluidStack.getFluid() != ModFluids.fluidCurdledMilk) return 0;
-            System.out.println("HOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOI");
             return Math.min(resource.amount, capacity);
         } else {
             if (fluidStack.amount == 0) {
@@ -146,7 +142,6 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain)
     {
-        //if (from != ForgeDirection.SOUTH) return null;
         if (resource == null || !resource.isFluidEqual(fluidStack)) return null;
 
         return this.drain(from, resource.amount, doDrain);
