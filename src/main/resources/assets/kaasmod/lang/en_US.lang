@@ -14,6 +14,7 @@ item.kaasmod:curdBucket.name=Curd Bucket
 
 #Blocks
 tile.kaasmod:barrel.name=Barrel
+tile.kaasmod:stirlingMachine.name=Stirling Machine
 tile.kaasmod:saltOre.name=Salt Ore
 
 #Creativetab

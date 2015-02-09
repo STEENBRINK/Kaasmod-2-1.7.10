@@ -3,53 +3,63 @@ package nl.steenbrink.kaasmod.client.renderer.model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.IIcon;
 import org.lwjgl.opengl.GL11;
 
 public class ModelStirlingMachineWhole extends ModelBase
 {
-    ModelRenderer KnifeBaseA;
-    ModelRenderer KnifeHolder;
-    ModelRenderer Knife1;
-    ModelRenderer Knife2;
-    ModelRenderer Knife3;
-    ModelRenderer Knife4;
-    ModelRenderer Knife5;
-    ModelRenderer Knife6;
-    ModelRenderer Knife7;
-    ModelRenderer Knife8;
-    ModelRenderer Knife9;
-    ModelRenderer Knife10;
-    ModelRenderer Knife11;
-    ModelRenderer Knife12;
-    ModelRenderer Knife13;
-    ModelRenderer Knife14;
-    ModelRenderer Knife15;
-    ModelRenderer Knife16;
-    ModelRenderer Knife17;
-    ModelRenderer Knife18;
-    ModelRenderer Knife19;
-    ModelRenderer Knife20;
-    ModelRenderer Knife21;
-    ModelRenderer Knife22;
-    ModelRenderer Knife23;
-    ModelRenderer Knife24;
-    ModelRenderer Knife25;
-    ModelRenderer BottomLeft;
-    ModelRenderer VeryBottom;
-    ModelRenderer Front;
-    ModelRenderer Back;
-    ModelRenderer RightA;
-    ModelRenderer RightB;
-    ModelRenderer KnifeBaseB;
-    ModelRenderer BaseLeft;
-    ModelRenderer BaseRight;
-  
-  public ModelStirlingMachineWhole()
-  {
-    textureWidth = 64;
-    textureHeight = 64;
+    private final RenderItem customRenderItem;
+    private ModelRenderer KnifeBaseA;
+    private ModelRenderer KnifeHolder;
+    private ModelRenderer Knife1;
+    private ModelRenderer Knife2;
+    private ModelRenderer Knife3;
+    private ModelRenderer Knife4;
+    private ModelRenderer Knife5;
+    private ModelRenderer Knife6;
+    private ModelRenderer Knife7;
+    private ModelRenderer Knife8;
+    private ModelRenderer Knife9;
+    private ModelRenderer Knife10;
+    private ModelRenderer Knife11;
+    private ModelRenderer Knife12;
+    private ModelRenderer Knife13;
+    private ModelRenderer Knife14;
+    private ModelRenderer Knife15;
+    private ModelRenderer Knife16;
+    private ModelRenderer Knife17;
+    private ModelRenderer Knife18;
+    private ModelRenderer Knife19;
+    private ModelRenderer Knife20;
+    private ModelRenderer Knife21;
+    private ModelRenderer Knife22;
+    private ModelRenderer Knife23;
+    private ModelRenderer Knife24;
+    private ModelRenderer Knife25;
+    private ModelRenderer BottomLeft;
+    private ModelRenderer VeryBottom;
+    private ModelRenderer Front;
+    private ModelRenderer Back;
+    private ModelRenderer RightA;
+    private ModelRenderer RightB;
+    private ModelRenderer KnifeBaseB;
+    private ModelRenderer BaseLeft;
+    private ModelRenderer BaseRight;
+
+    public ModelStirlingMachineWhole() {
+        customRenderItem = new RenderItem() {
+            @Override
+            public boolean shouldBob() {
+                return false;
+            }
+        };
+        customRenderItem.setRenderManager(RenderManager.instance);
+
+        textureWidth = 64;
+        textureHeight = 64;
     
       KnifeBaseA = new ModelRenderer(this, 0, 53);
       KnifeBaseA.addBox(0F, 0F, 0F, 1, 4, 1);
@@ -310,7 +320,46 @@ public class ModelStirlingMachineWhole extends ModelBase
     BaseLeft.render(f5);
     BaseRight.render(f5);
   }
-  
+
+  public void simpleRender(float f5){
+      KnifeBaseA.render(f5);
+      KnifeHolder.render(f5);
+      Knife1.render(f5);
+      Knife2.render(f5);
+      Knife3.render(f5);
+      Knife4.render(f5);
+      Knife5.render(f5);
+      Knife6.render(f5);
+      Knife7.render(f5);
+      Knife8.render(f5);
+      Knife9.render(f5);
+      Knife10.render(f5);
+      Knife11.render(f5);
+      Knife12.render(f5);
+      Knife13.render(f5);
+      Knife14.render(f5);
+      Knife15.render(f5);
+      Knife16.render(f5);
+      Knife17.render(f5);
+      Knife18.render(f5);
+      Knife19.render(f5);
+      Knife20.render(f5);
+      Knife21.render(f5);
+      Knife22.render(f5);
+      Knife23.render(f5);
+      Knife24.render(f5);
+      Knife25.render(f5);
+      BottomLeft.render(f5);
+      VeryBottom.render(f5);
+      Front.render(f5);
+      Back.render(f5);
+      RightA.render(f5);
+      RightB.render(f5);
+      KnifeBaseB.render(f5);
+      BaseLeft.render(f5);
+      BaseRight.render(f5);
+  }
+
   private void setRotation(ModelRenderer model, float x, float y, float z)
   {
     model.rotateAngleX = x;
