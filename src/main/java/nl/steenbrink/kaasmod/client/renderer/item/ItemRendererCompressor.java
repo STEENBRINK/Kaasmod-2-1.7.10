@@ -4,32 +4,23 @@ import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.IItemRenderer;
-import nl.steenbrink.kaasmod.client.renderer.model.ModelStirlingMachine;
+import nl.steenbrink.kaasmod.client.renderer.model.ModelCompressor;
 import nl.steenbrink.kaasmod.reference.Reference;
 import org.lwjgl.opengl.GL11;
 
-public class ItemRendererStirlingMachine implements IItemRenderer {
+public class ItemRendererCompressor implements IItemRenderer{
 
-    private final ModelStirlingMachine modelStirlingMachine;
+    private final ModelCompressor modelCompressor;
 
-    public ItemRendererStirlingMachine()
-    {
-        modelStirlingMachine = new ModelStirlingMachine();
-    }
-
+    public ItemRendererCompressor() {modelCompressor = new ModelCompressor();}
 
     @Override
-    public boolean handleRenderType(ItemStack itemStack, ItemRenderType itemRenderType)
-    {
-        return true;
-    }
+    public boolean handleRenderType(ItemStack itemStack, ItemRenderType itemRenderType) {return true;}
 
     @Override
-    public boolean shouldUseRenderHelper(ItemRenderType itemRenderType, ItemStack itemStack, ItemRendererHelper itemRendererHelper)
-    {
+    public boolean shouldUseRenderHelper(ItemRenderType type, ItemStack item, ItemRendererHelper helper) {
         return true;
     }
-
     @Override
     public void renderItem(ItemRenderType itemRenderType, ItemStack itemStack, Object... data)
     {
@@ -37,29 +28,29 @@ public class ItemRendererStirlingMachine implements IItemRenderer {
         {
             case ENTITY:
             {
-                renderStirlingMachine(0F, 1F, 0F);
+                renderCompressor(0F, 1F, 0F);
                 return;
             }
             case EQUIPPED:
             {
-                renderStirlingMachine(0.5F, 1F, 0.5F);
+                renderCompressor(0.5F, 1F, 0.5F);
                 return;
             }
             case EQUIPPED_FIRST_PERSON:
             {
-                renderStirlingMachine(0.5F, 1.5F, 0.5F);
+                renderCompressor(0.5F, 1.5F, 0.5F);
                 return;
             }
             case INVENTORY:
             {
-                renderStirlingMachine(0F, 1F, 0F);
+                renderCompressor(0F, 1F, 0F);
                 return;
             }
             default:
         }
     }
 
-    private void renderStirlingMachine(float x, float y, float z)
+    private void renderCompressor(float x, float y, float z)
     {
         GL11.glPushMatrix();
 
@@ -69,12 +60,11 @@ public class ItemRendererStirlingMachine implements IItemRenderer {
         GL11.glRotatef(180F, 0f, 0f, 1f);
 
         // Bind texture
-        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/models/StirlingMachineWhole.png"));
+        FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/models/Compressor.png"));
 
-        // Render
-        modelStirlingMachine.simpleRender(0.0625f);
+        //Render
+        modelCompressor.simpleRenderer(0.0625f);
 
         GL11.glPopMatrix();
     }
-
 }

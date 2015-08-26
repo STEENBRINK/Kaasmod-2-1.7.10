@@ -41,13 +41,13 @@ public class RecipesBarrel {
                 new ItemStack(ModItems.itemStomachSlice, 1),
                 new FluidStack(ModFluids.fluidRennet, 1000),
                 null,
-                60 * 20);
+                1 * 20);
         INSTANCE.addFluidItemCrafting(
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new ItemStack(ModItems.itemDirtySalt, 1),
                 null,
                 new ItemStack(ModItems.itemCleanSalt, 1),
-                30 * 20);
+                1 * 20);
     }
 
     public static RecipesBarrel INSTANCE = new RecipesBarrel();

@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import nl.steenbrink.kaasmod.client.renderer.model.ModelBarrel;
 import nl.steenbrink.kaasmod.reference.Reference;
 import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
+import nl.steenbrink.kaasmod.tileentity.TileEntityCompressor;
 import org.lwjgl.opengl.GL11;
 
 public class TileEntityRendererBarrel extends TileEntitySpecialRenderer {
@@ -55,7 +56,5 @@ public class TileEntityRendererBarrel extends TileEntitySpecialRenderer {
             this.modelBarrel.renderInternal(0xffffffff, tileEntityBarrel.fluidStack.getFluid().getIcon(tileEntityBarrel.fluidStack));
             GL11.glPopMatrix();
         }
-
-
     }
 }

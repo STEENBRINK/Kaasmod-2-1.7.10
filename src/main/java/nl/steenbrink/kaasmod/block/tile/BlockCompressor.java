@@ -10,39 +10,37 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import nl.steenbrink.kaasmod.creative.CreativeTabKaasmod;
 import nl.steenbrink.kaasmod.reference.Names;
-import nl.steenbrink.kaasmod.tileentity.TileEntityStirlingMachine;
+import nl.steenbrink.kaasmod.tileentity.TileEntityCompressor;
 
-public class BlockStirlingMachine extends BlockBasicTile
-{
-    public BlockStirlingMachine(){
+public class BlockCompressor extends BlockBasicTile {
+
+    public BlockCompressor() {
         super(Material.wood);
-        this.setBlockName(Names.Blocks.STIRLING_MACHINE);
+        this.setBlockName(Names.Blocks.COMPRESSOR);
         this.setStepSound(Block.soundTypeWood);
     }
 
     @Override
-    public TileEntity createNewTileEntity(World world, int metaData)
-    {
-        return new TileEntityStirlingMachine();
+    public TileEntity createNewTileEntity(World world, int metaData) {
+        return new TileEntityCompressor();
     }
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
         if (entityPlayer == null) return false;
 
-        TileEntityStirlingMachine tileEntityStirlingMachine = (TileEntityStirlingMachine) world.getTileEntity(x, y, z);
-        if (tileEntityStirlingMachine == null) return false;
+        TileEntityCompressor tileEntityCompressor = (TileEntityCompressor) world.getTileEntity(x, y, z);
+        if (tileEntityCompressor == null) return false;
 
         if (entityPlayer.getCurrentEquippedItem() != null) {
             ItemStack equipedItem = entityPlayer.getCurrentEquippedItem();
 
             FluidStack fluidItem = FluidContainerRegistry.getFluidForFilledItem(equipedItem);
             if (fluidItem != null) {
-                int capacity = tileEntityStirlingMachine.fill(ForgeDirection.UNKNOWN, fluidItem, false);
+                int capacity = tileEntityCompressor.fill(ForgeDirection.UNKNOWN, fluidItem, false);
                 if (capacity > 0) {
-                    tileEntityStirlingMachine.fill(ForgeDirection.UNKNOWN, fluidItem, true);
+                    tileEntityCompressor.fill(ForgeDirection.UNKNOWN, fluidItem, true);
                     if (!entityPlayer.capabilities.isCreativeMode) {
                         if (equipedItem.getItem() == Items.potionitem && equipedItem.getItemDamage() == 0) {
                             entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem, new ItemStack(Items.glass_bottle, 1, 0));
@@ -52,7 +50,7 @@ public class BlockStirlingMachine extends BlockBasicTile
                     }
                 }
             } else if (FluidContainerRegistry.isContainer(equipedItem)) {
-                FluidStack available = tileEntityStirlingMachine.drain(ForgeDirection.UNKNOWN, Integer.MAX_VALUE, false);
+                FluidStack available = tileEntityCompressor.drain(ForgeDirection.UNKNOWN, Integer.MAX_VALUE, false);
                 if (available != null) {
                     ItemStack filled = FluidContainerRegistry.fillFluidContainer(available, equipedItem);
                     FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(filled);
@@ -67,7 +65,7 @@ public class BlockStirlingMachine extends BlockBasicTile
                             entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem, filled);
                         }
 
-                        tileEntityStirlingMachine.drain(ForgeDirection.UNKNOWN, liquid.amount, true);
+                        tileEntityCompressor.drain(ForgeDirection.UNKNOWN, liquid.amount, true);
                         return true;
                     }
                 }
@@ -89,6 +87,4 @@ public class BlockStirlingMachine extends BlockBasicTile
             return item;
         }
     }
-
-
 }

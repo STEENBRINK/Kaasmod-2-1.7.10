@@ -9,6 +9,7 @@ public class Names {
         public static final String CHEESE_BRICKS = "cheeseBricks";
         public static final String SMOOTH_CHEESE = "smoothCheese";
         public static final String TOASTER = "toaster";
+        public static final String COMPRESSOR = "compressor";
     }
 
     public static class Items {
