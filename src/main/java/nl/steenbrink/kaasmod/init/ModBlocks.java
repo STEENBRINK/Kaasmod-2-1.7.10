@@ -8,8 +8,10 @@ import nl.steenbrink.kaasmod.block.*;
 import nl.steenbrink.kaasmod.block.fluid.*;
 import nl.steenbrink.kaasmod.block.tile.BlockBarrel;
 import nl.steenbrink.kaasmod.block.tile.BlockStirlingMachine;
+import nl.steenbrink.kaasmod.block.tile.BlockToaster;
 import nl.steenbrink.kaasmod.item.ItemBlockBarrel;
 import nl.steenbrink.kaasmod.item.ItemBlockStirlingMachine;
+import nl.steenbrink.kaasmod.item.ItemBlockToaster;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModBlocks {
@@ -24,6 +26,10 @@ public class ModBlocks {
     public static final BlockFluidClassic blockRennet = new BlockRennet(ModFluids.fluidRennet, Material.water);
     public static final BlockFluidClassic blockCurdledMilk = new BlockCurdledMilk(ModFluids.fluidCurdledMilk, Material.water);
     public static final BlockFluidClassic blockCurd = new BlockCurd(ModFluids.fluidCurd, Material.water);
+    public static final Block blockCheeseBricks = new BlockCheeseBricks();
+    public static final Block blockSmoothCheese = new BlockSmoothCheese();
+    public static final Block blockToaster = new BlockToaster();
+
 
 
     public static void init() {
@@ -37,6 +43,9 @@ public class ModBlocks {
         GameRegistry.registerBlock(blockCurdledMilk, Names.Fluids.CURDLED_MILK);
         GameRegistry.registerBlock(blockCurd, Names.Fluids.CURD);
         GameRegistry.registerBlock(blockStirlingMachine, ItemBlockStirlingMachine.class, Names.Blocks.STIRLING_MACHINE);
+        GameRegistry.registerBlock(blockCheeseBricks, Names.Blocks.CHEESE_BRICKS);
+        GameRegistry.registerBlock(blockSmoothCheese, Names.Blocks.SMOOTH_CHEESE);
+        GameRegistry.registerBlock(blockToaster, ItemBlockToaster.class, Names.Blocks.TOASTER);
     }
 
 }

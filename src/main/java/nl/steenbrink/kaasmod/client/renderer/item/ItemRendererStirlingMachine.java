@@ -72,7 +72,7 @@ public class ItemRendererStirlingMachine implements IItemRenderer {
         FMLClientHandler.instance().getClient().renderEngine.bindTexture(new ResourceLocation(Reference.MOD_ID.toLowerCase(), "textures/models/Barrel.png"));
 
         // Render
-        modelStirlingMachine.simpleRender(0.0625f);
+        modelStirlingMachine.simpleRender(0.0635f);
 
         GL11.glPopMatrix();
     }

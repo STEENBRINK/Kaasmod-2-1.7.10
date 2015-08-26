@@ -6,6 +6,9 @@ public class Names {
         public static final String SALT_ORE = "saltOre";
         public static final String BARREL = "barrel";
         public static final String STIRLING_MACHINE = "stirlingMachine";
+        public static final String CHEESE_BRICKS = "cheeseBricks";
+        public static final String SMOOTH_CHEESE = "smoothCheese";
+        public static final String TOASTER = "toaster";
     }
 
     public static class Items {

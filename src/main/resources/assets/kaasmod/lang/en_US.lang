@@ -16,6 +16,9 @@ item.kaasmod:curdBucket.name=Curd Bucket
 tile.kaasmod:barrel.name=Barrel
 tile.kaasmod:stirlingMachine.name=Stirling Machine
 tile.kaasmod:saltOre.name=Salt Ore
+tile.kaasmod:cheeseBricks=Cheese Bricks
+tile.kaasmod:smoothCheese=Smooth Cheese
+tile.kaasmod:toaster=Toaster
 
 #Creativetab
 itemGroup.kaasmod=Steenbrink's Kaasmod
