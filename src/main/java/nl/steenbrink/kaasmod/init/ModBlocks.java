@@ -10,10 +10,10 @@ import nl.steenbrink.kaasmod.block.tile.BlockBarrel;
 import nl.steenbrink.kaasmod.block.tile.BlockCompressor;
 import nl.steenbrink.kaasmod.block.tile.BlockStirlingMachine;
 import nl.steenbrink.kaasmod.block.tile.BlockToaster;
-import nl.steenbrink.kaasmod.item.ItemBlockBarrel;
-import nl.steenbrink.kaasmod.item.ItemBlockCompressor;
-import nl.steenbrink.kaasmod.item.ItemBlockStirlingMachine;
-import nl.steenbrink.kaasmod.item.ItemBlockToaster;
+import nl.steenbrink.kaasmod.item.block.ItemBlockBarrel;
+import nl.steenbrink.kaasmod.item.block.ItemBlockCompressor;
+import nl.steenbrink.kaasmod.item.block.ItemBlockStirlingMachine;
+import nl.steenbrink.kaasmod.item.block.ItemBlockToaster;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModBlocks {

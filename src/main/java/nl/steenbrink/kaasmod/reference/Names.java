@@ -10,6 +10,7 @@ public class Names {
         public static final String SMOOTH_CHEESE = "smoothCheese";
         public static final String TOASTER = "toaster";
         public static final String COMPRESSOR = "compressor";
+        public static final String CHEESE_SHELF = "cheeseShelf";
     }
 
     public static class Items {

@@ -1,5 +1,8 @@
 package nl.steenbrink.kaasmod.tileentity;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
@@ -7,18 +10,23 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+import nl.steenbrink.kaasmod.Kaasmod;
 import nl.steenbrink.kaasmod.init.ModFluids;
+import nl.steenbrink.kaasmod.init.ModItems;
+import nl.steenbrink.kaasmod.reference.Names;
 
-public class TileEntityCompressor extends TileEntity implements IFluidHandler
+public class TileEntityCompressor extends TileEntity implements IFluidHandler, ISidedInventory
 {
     public TileEntityCompressor() { super(); }
 
     private boolean shouldUpdate = true;
     private boolean isCrafting = false;
     public int craftingTimer = 0;
-    public int fluidCapacity = 1000;
 
     public FluidStack fluidStack = new FluidStack(0, 0);
+    public int fluidCapacity = 1000;
+
+    private ItemStack[] inventory = new ItemStack[1];
 
     @Override
     public void updateEntity()
@@ -51,8 +59,9 @@ public class TileEntityCompressor extends TileEntity implements IFluidHandler
                     // crafting outcome
                     this.isCrafting = false;
                     this.craftingTimer = 0;
+                    this.fluidStack.amount = 0;
+                    this.setInventorySlotContents(0, new ItemStack(ModItems.itemCleanSalt));
                     this.shouldUpdate = true;
-
                 }
             }
         }
@@ -160,5 +169,77 @@ public class TileEntityCompressor extends TileEntity implements IFluidHandler
     public FluidTankInfo[] getTankInfo(ForgeDirection from)
     {
         return new FluidTankInfo[]{new FluidTankInfo(fluidStack, fluidCapacity)};
+    }
+
+    @Override
+    public int[] getAccessibleSlotsFromSide(int p_94128_1_) {
+        return new int[0];
+    }
+
+    @Override
+    public boolean canInsertItem(int p_102007_1_, ItemStack p_102007_2_, int p_102007_3_) {
+        return !isCrafting;
+    }
+
+    @Override
+    public boolean canExtractItem(int p_102008_1_, ItemStack p_102008_2_, int p_102008_3_) {
+        return !isCrafting;
+    }
+
+    @Override
+    public int getSizeInventory() {
+        return inventory.length;
+    }
+
+    @Override
+    public ItemStack getStackInSlot(int slot) { return this.inventory[slot]; }
+
+    @Override
+    public ItemStack decrStackSize(int p_70298_1_, int p_70298_2_) {
+        return null;
+    }
+
+    @Override
+    public ItemStack getStackInSlotOnClosing(int p_70304_1_) {
+        return null;
+    }
+
+    @Override
+    public void setInventorySlotContents(int slot, ItemStack itemStack) {
+        this.inventory[slot] = itemStack;
+        this.shouldUpdate = true;
+    }
+
+    @Override
+    public String getInventoryName() {
+        return null;
+    }
+
+    @Override
+    public boolean hasCustomInventoryName() {
+        return false;
+    }
+
+    @Override
+    public int getInventoryStackLimit() {
+        return 1;
+    }
+
+    @Override
+    public boolean isUseableByPlayer(EntityPlayer entityPlayer) {
+        return true;
+    }
+
+    @Override
+    public void openInventory() {
+    }
+
+    @Override
+    public void closeInventory() {
+    }
+
+    @Override
+    public boolean isItemValidForSlot(int slot, ItemStack itemStack) {
+        return true;
     }
 }

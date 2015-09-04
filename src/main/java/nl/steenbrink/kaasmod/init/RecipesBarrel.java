@@ -29,13 +29,13 @@ public class RecipesBarrel {
                 new ItemStack(ModItems.itemCleanSalt, 1),
                 new FluidStack(ModFluids.fluidSaltWater, 1000),
                 null,
-                10 * 20);
+                1 * 20);
         INSTANCE.addFluidItemCrafting(
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new ItemStack(Items.apple, 1),
                 new FluidStack(ModFluids.fluidVinegar, 1000),
                 null,
-                10 * 20);
+                1 * 20);
         INSTANCE.addFluidItemCrafting(
                 FluidCrafting.createCraftingFluid(new FluidStack(ModFluids.fluidSaltWater, 1000), new FluidStack(ModFluids.fluidVinegar, 1000)),
                 new ItemStack(ModItems.itemStomachSlice, 1),
