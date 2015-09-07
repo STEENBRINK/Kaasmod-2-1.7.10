@@ -1,4 +1,4 @@
-package nl.steenbrink.kaasmod.item.food;
+package nl.steenbrink.kaasmod.item;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemFood;

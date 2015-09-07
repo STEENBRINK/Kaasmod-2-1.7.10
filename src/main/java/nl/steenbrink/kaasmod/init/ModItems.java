@@ -5,7 +5,7 @@ import net.minecraft.item.Item;
 import nl.steenbrink.kaasmod.item.ItemBasic;
 import nl.steenbrink.kaasmod.item.ItemKnife;
 import nl.steenbrink.kaasmod.item.bucket.*;
-import nl.steenbrink.kaasmod.item.food.ItemBasicFood;
+import nl.steenbrink.kaasmod.item.ItemBasicFood;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModItems {

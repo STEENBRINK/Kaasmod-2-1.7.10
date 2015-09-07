@@ -7,10 +7,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import nl.steenbrink.kaasmod.block.*;
 import nl.steenbrink.kaasmod.block.fluid.*;
-import nl.steenbrink.kaasmod.block.tile.BlockBarrel;
-import nl.steenbrink.kaasmod.block.tile.BlockCompressor;
-import nl.steenbrink.kaasmod.block.tile.BlockStirlingMachine;
-import nl.steenbrink.kaasmod.block.tile.BlockToaster;
+import nl.steenbrink.kaasmod.block.tile.*;
 import nl.steenbrink.kaasmod.item.block.*;
 import nl.steenbrink.kaasmod.reference.Names;
 
@@ -32,6 +29,7 @@ public class ModBlocks {
     public static final Block blockCompressor = new BlockCompressor();
     public static final Block blockCheese = new BlockCheese(false).setBlockName(Names.Blocks.CHEESE);
     public static final Block blockYoungCheese = new BlockCheese(true).setBlockName(Names.Blocks.YOUNG_CHEESE);
+    public static final Block blockCheeseShelf = new BlockCheeseShelf();
 
 
 
@@ -52,6 +50,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(blockCompressor, ItemBlockCompressor.class, Names.Blocks.COMPRESSOR);
         GameRegistry.registerBlock(blockCheese, ItemBlockCheese.class, Names.Blocks.CHEESE);
         GameRegistry.registerBlock(blockYoungCheese, ItemBlockCheese.class, Names.Blocks.YOUNG_CHEESE);
+        GameRegistry.registerBlock(blockCheeseShelf, ItemBlockCheeseShelf.class, Names.Blocks.CHEESE_SHELF);
     }
 
 }
