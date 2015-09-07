@@ -11,6 +11,7 @@ public class Names {
         public static final String TOASTER = "toaster";
         public static final String COMPRESSOR = "compressor";
         public static final String CHEESE_SHELF = "cheeseShelf";
+        public static final String CHEESE = "cheese";
     }
 
     public static class Items {
@@ -26,6 +27,7 @@ public class Names {
         public static final String CURD_BUCKET = "curdBucket";
         public static final String RENNET_BUCKET = "rennetBucket";
         public static final String LACTIC_ACID_BUCKET = "lacticAcidBucket";
+        public static final String CHEESE_SLICE = "cheeseSlice";
 
     }
 

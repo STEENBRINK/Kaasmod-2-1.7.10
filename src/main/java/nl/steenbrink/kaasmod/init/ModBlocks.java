@@ -3,6 +3,7 @@ package nl.steenbrink.kaasmod.init;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import nl.steenbrink.kaasmod.block.*;
 import nl.steenbrink.kaasmod.block.fluid.*;
@@ -32,6 +33,7 @@ public class ModBlocks {
     public static final Block blockSmoothCheese = new BlockSmoothCheese();
     public static final Block blockToaster = new BlockToaster();
     public static final Block blockCompressor = new BlockCompressor();
+    public static final Block blockCheese = new BlockCheese();
 
 
 
@@ -50,6 +52,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(blockSmoothCheese, Names.Blocks.SMOOTH_CHEESE);
         GameRegistry.registerBlock(blockToaster, ItemBlockToaster.class, Names.Blocks.TOASTER);
         GameRegistry.registerBlock(blockCompressor, ItemBlockCompressor.class, Names.Blocks.COMPRESSOR);
+        GameRegistry.registerBlock(blockCheese, ItemBlockCheese.class, Names.Blocks.CHEESE);
     }
 
 }

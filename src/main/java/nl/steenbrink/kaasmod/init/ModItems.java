@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 import nl.steenbrink.kaasmod.item.ItemBasic;
 import nl.steenbrink.kaasmod.item.ItemKnife;
 import nl.steenbrink.kaasmod.item.bucket.*;
+import nl.steenbrink.kaasmod.item.food.ItemBasicFood;
 import nl.steenbrink.kaasmod.reference.Names;
 
 public class ModItems {
@@ -20,7 +21,8 @@ public class ModItems {
     public static final Item itemDirtySalt = new ItemBasic().setUnlocalizedName(Names.Items.DIRTY_SALT);
     public static final Item itemKnife = new ItemKnife();
     public static final Item itemStomachSlice = new ItemBasic().setUnlocalizedName(Names.Items.STOMACH_SLICE);
-    public static final Item itemBreadSlice = new ItemBasic().setUnlocalizedName(Names.Items.BREAD_SLICE);
+    public static final Item itemBreadSlice = new ItemBasicFood(2, 0.2f, false).setUnlocalizedName(Names.Items.BREAD_SLICE);
+    public static final Item itemCheeseSlice = new ItemBasicFood(2, 0.2f, false).setUnlocalizedName(Names.Items.CHEESE_SLICE);
 
     public static void init() {
         GameRegistry.registerItem(itemStomach, Names.Items.STOMACH);
@@ -35,6 +37,7 @@ public class ModItems {
         GameRegistry.registerItem(itemRennetBucket, Names.Items.RENNET_BUCKET);
         GameRegistry.registerItem(itemCurdledMilkBucket, Names.Items.CURDLED_MILK_BUCKET);
         GameRegistry.registerItem(itemCurdBucket, Names.Items.CURD_BUCKET);
+        GameRegistry.registerItem(itemCheeseSlice, Names.Items.CHEESE_SLICE);
     }
 
 }
