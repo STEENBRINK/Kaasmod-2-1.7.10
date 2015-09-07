@@ -41,6 +41,11 @@ public class BlockCheese extends BlockCake {
 
     public boolean getYoung(boolean isYoung){
         return isYoung;
+
+    }
+
+    public void setYoung(){
+
     }
 
     @Override
