@@ -9,6 +9,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import nl.steenbrink.kaasmod.creative.CreativeTabKaasmod;
 import nl.steenbrink.kaasmod.init.ModItems;
 import nl.steenbrink.kaasmod.reference.Names;
 import nl.steenbrink.kaasmod.utility.UnlocalizedNameHelper;
@@ -34,6 +35,7 @@ public class BlockCheese extends BlockCake {
         this.setStepSound(Block.soundTypeCloth);
         this.setHardness(0.5F);
         this.setBlockName(Names.Blocks.CHEESE);
+        this.setCreativeTab(CreativeTabKaasmod.INSTANCE);
     }
 
     @Override
@@ -67,6 +69,11 @@ public class BlockCheese extends BlockCake {
         this.iconInside = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Inside");
         this.iconTop = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Top");
         this.iconBottom = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Bottom");
+    }
+
+    @Override
+    public String getUnlocalizedName() {
+        return UnlocalizedNameHelper.getUnlocalizedBlockName(super.getUnlocalizedName());
     }
 
 }
