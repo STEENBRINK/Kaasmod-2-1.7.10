@@ -30,8 +30,8 @@ public class ModBlocks {
     public static final Block blockSmoothCheese = new BlockBasic(Material.rock).setBlockName(Names.Blocks.SMOOTH_CHEESE);
     public static final Block blockToaster = new BlockToaster();
     public static final Block blockCompressor = new BlockCompressor();
-    public static final Block blockCheese = new BlockCheese(false);
-    public static final Block blockYoungCheese = new BlockCheese(true);
+    public static final Block blockCheese = new BlockCheese(false).setBlockName(Names.Blocks.CHEESE);
+    public static final Block blockYoungCheese = new BlockCheese(true).setBlockName(Names.Blocks.YOUNG_CHEESE);
 
 
 
