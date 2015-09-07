@@ -12,6 +12,7 @@ public class Names {
         public static final String COMPRESSOR = "compressor";
         public static final String CHEESE_SHELF = "cheeseShelf";
         public static final String CHEESE = "cheese";
+        public static final String YOUNG_CHEESE = "youngCheese";
     }
 
     public static class Items {

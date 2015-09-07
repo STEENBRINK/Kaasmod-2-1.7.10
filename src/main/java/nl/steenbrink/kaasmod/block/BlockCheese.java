@@ -30,12 +30,17 @@ public class BlockCheese extends BlockCake {
     @SideOnly(Side.CLIENT)
     private IIcon iconInside;
 
-    public BlockCheese() {
+    public BlockCheese(boolean isYoung) {
         super();
         this.setStepSound(Block.soundTypeCloth);
         this.setHardness(0.5F);
         this.setBlockName(Names.Blocks.CHEESE);
         this.setCreativeTab(CreativeTabKaasmod.INSTANCE);
+        this.getYoung(isYoung);
+    }
+
+    public boolean getYoung(boolean isYoung){
+        return isYoung;
     }
 
     @Override
@@ -65,11 +70,11 @@ public class BlockCheese extends BlockCake {
     @Override
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.blockIcon = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Side");
-        this.iconInside = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Inside");
-        this.iconTop = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Top");
-        this.iconBottom = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Bottom");
-    }
+            this.blockIcon = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Side");
+            this.iconInside = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Inside");
+            this.iconTop = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Top");
+            this.iconBottom = iconRegister.registerIcon(UnlocalizedNameHelper.getUnwrappedUnlocalizedName(this.getUnlocalizedName()) + "Bottom");
+        }
 
     @Override
     public String getUnlocalizedName() {

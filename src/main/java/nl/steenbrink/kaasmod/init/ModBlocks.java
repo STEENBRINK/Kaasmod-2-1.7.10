@@ -26,11 +26,12 @@ public class ModBlocks {
     public static final BlockFluidClassic blockRennet = new BlockRennet(ModFluids.fluidRennet, Material.water);
     public static final BlockFluidClassic blockCurdledMilk = new BlockCurdledMilk(ModFluids.fluidCurdledMilk, Material.water);
     public static final BlockFluidClassic blockCurd = new BlockCurd(ModFluids.fluidCurd, Material.water);
-    public static final Block blockCheeseBricks = new BlockCheeseBricks();
-    public static final Block blockSmoothCheese = new BlockSmoothCheese();
+    public static final Block blockCheeseBricks = new BlockBasic(Material.rock).setBlockName(Names.Blocks.CHEESE_BRICKS);
+    public static final Block blockSmoothCheese = new BlockBasic(Material.rock).setBlockName(Names.Blocks.SMOOTH_CHEESE);
     public static final Block blockToaster = new BlockToaster();
     public static final Block blockCompressor = new BlockCompressor();
-    public static final Block blockCheese = new BlockCheese();
+    public static final Block blockCheese = new BlockCheese(false);
+    public static final Block blockYoungCheese = new BlockCheese(true);
 
 
 
@@ -50,6 +51,7 @@ public class ModBlocks {
         GameRegistry.registerBlock(blockToaster, ItemBlockToaster.class, Names.Blocks.TOASTER);
         GameRegistry.registerBlock(blockCompressor, ItemBlockCompressor.class, Names.Blocks.COMPRESSOR);
         GameRegistry.registerBlock(blockCheese, ItemBlockCheese.class, Names.Blocks.CHEESE);
+        GameRegistry.registerBlock(blockYoungCheese, ItemBlockCheese.class, Names.Blocks.YOUNG_CHEESE);
     }
 
 }
