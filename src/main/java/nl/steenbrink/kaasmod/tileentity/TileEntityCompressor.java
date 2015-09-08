@@ -11,6 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
 import nl.steenbrink.kaasmod.Kaasmod;
+import nl.steenbrink.kaasmod.init.ModBlocks;
 import nl.steenbrink.kaasmod.init.ModFluids;
 import nl.steenbrink.kaasmod.init.ModItems;
 import nl.steenbrink.kaasmod.reference.Names;
@@ -40,7 +41,7 @@ public class TileEntityCompressor extends TileEntity implements IFluidHandler, I
             //Apply crafting here
             if (this.fluidStack.getFluid() == ModFluids.fluidCurd) {
                 this.isCrafting = true;
-                this.craftingTimer = 20 * 120;
+                this.craftingTimer = 20 * 10;
             }
         }
 
@@ -53,15 +54,16 @@ public class TileEntityCompressor extends TileEntity implements IFluidHandler, I
                 craftingTimer--;
                 if (craftingTimer % 20 == 0) {
                     this.shouldUpdate = true;
-                    //System.out.println("Updated!");
+                    System.out.println("Updated! Tick" + craftingTimer);
                 }
                 if (craftingTimer <= 0) {
                     // crafting outcome
                     this.isCrafting = false;
                     this.craftingTimer = 0;
                     this.fluidStack.amount = 0;
-                    this.setInventorySlotContents(0, new ItemStack(ModItems.itemCleanSalt));
+                    this.setInventorySlotContents(0, new ItemStack(ModBlocks.blockYoungCheese));
                     this.shouldUpdate = true;
+                    System.out.println("Done!" + this.getStackInSlot(0).getUnlocalizedName());
                 }
             }
         }

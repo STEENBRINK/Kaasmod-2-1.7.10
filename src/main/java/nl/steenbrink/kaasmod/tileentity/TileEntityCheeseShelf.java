@@ -3,11 +3,11 @@ package nl.steenbrink.kaasmod.tileentity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+/*import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;*/
 import net.minecraft.tileentity.TileEntity;
 import nl.steenbrink.kaasmod.init.ModBlocks;
 
@@ -60,13 +60,21 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
         }
     }
 
-    @Override
+    /*@Override
     public void readFromNBT(NBTTagCompound nbtTagCompound) {
         super.readFromNBT(nbtTagCompound);
 
         // Read the crafting status
         this.isCrafting = nbtTagCompound.getBoolean("IsCrafting");
         this.craftingTimer = nbtTagCompound.getInteger("CraftingTimer");
+
+        // Read the internal fluidStack
+        /*if (nbtTagCompound.hasKey("Fluid")) {
+            NBTTagCompound fluidCompound = nbtTagCompound.getCompoundTag("Fluid");
+            this.fluidStack = FluidStack.loadFluidStackFromNBT(fluidCompound);
+        } else {
+            this.fluidStack = new FluidStack(0, 0);
+        }
 
         // Read the inventory
         NBTTagList inventoryList = nbtTagCompound.getTagList("Items", 10);
@@ -79,9 +87,9 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
             }
         }
         this.shouldUpdate = true;
-    }
+    }**/
 
-    @Override
+    /*@Override
     public void writeToNBT(NBTTagCompound nbtTagCompound) {
         super.writeToNBT(nbtTagCompound);
 
@@ -89,7 +97,14 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
         nbtTagCompound.setBoolean("IsCrafting", isCrafting);
         nbtTagCompound.setInteger("CraftingTimer", craftingTimer);
 
-        // Write the inventory
+        // Save the internal fluidStack
+        /*if (this.fluidStack.getFluid() != null) {
+            NBTTagCompound fluidCompound = new NBTTagCompound();
+            this.fluidStack.writeToNBT(fluidCompound);
+            nbtTagCompound.setTag("Fluid", fluidCompound);
+        }
+
+        // Write the inventorty
         NBTTagList inventoryList = new NBTTagList();
         for (int i = 0; i < this.inventory.length; ++i) {
             if (this.inventory[i] != null) {
@@ -100,9 +115,9 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
             }
         }
         nbtTagCompound.setTag("Items", inventoryList);
-    }
+    }*/
 
-    @Override
+    /*@Override
     public Packet getDescriptionPacket() {
         NBTTagCompound tag = new NBTTagCompound();
         this.writeToNBT(tag);
@@ -114,7 +129,7 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
     public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
         NBTTagCompound tag = pkt.func_148857_g();
         readFromNBT(tag);
-    }
+    }*/
 
     public boolean isCrafting() {
         return isCrafting;

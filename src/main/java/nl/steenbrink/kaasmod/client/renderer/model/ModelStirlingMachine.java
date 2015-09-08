@@ -6,10 +6,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.IIcon;
 import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
-import nl.steenbrink.kaasmod.tileentity.TileEntityStirlingMachine;
 import org.lwjgl.opengl.GL11;
 
 public class ModelStirlingMachine extends ModelBase

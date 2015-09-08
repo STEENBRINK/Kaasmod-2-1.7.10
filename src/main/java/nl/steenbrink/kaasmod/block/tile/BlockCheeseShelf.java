@@ -4,16 +4,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
+//import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
+import nl.steenbrink.kaasmod.init.ModBlocks;
 import nl.steenbrink.kaasmod.reference.Names;
-import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
 import nl.steenbrink.kaasmod.tileentity.TileEntityCheeseShelf;
 
 public class BlockCheeseShelf extends BlockBasicTile{
@@ -30,6 +26,7 @@ public class BlockCheeseShelf extends BlockBasicTile{
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
+        System.out.println("Activated!");
         if (entityPlayer == null) return false;
 
         TileEntityCheeseShelf tileEntityCheeseShelf = (TileEntityCheeseShelf) world.getTileEntity(x, y, z);
@@ -44,7 +41,7 @@ public class BlockCheeseShelf extends BlockBasicTile{
             return true;
         }
 
-        if (entityPlayer.getCurrentEquippedItem() != null) {
+        if (entityPlayer.getCurrentEquippedItem() == new ItemStack(ModBlocks.blockYoungCheese)) {
             ItemStack equipedItem = entityPlayer.getCurrentEquippedItem();
                 if (tileEntityCheeseShelf.getStackInSlot(0) == null) {
                     tileEntityCheeseShelf.setInventorySlotContents(0, equipedItem.splitStack(1));
@@ -56,7 +53,7 @@ public class BlockCheeseShelf extends BlockBasicTile{
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
-        TileEntityBarrel tileentityfurnace = (TileEntityBarrel)world.getTileEntity(x, y, z);
+        TileEntityCheeseShelf tileentityfurnace = (TileEntityCheeseShelf)world.getTileEntity(x, y, z);
 
         if (tileentityfurnace != null)
         {
@@ -82,10 +79,10 @@ public class BlockCheeseShelf extends BlockBasicTile{
                         itemstack.stackSize -= j1;
                         EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
 
-                        if (itemstack.hasTagCompound())
+                        /*if (itemstack.hasTagCompound())
                         {
                             entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
-                        }
+                        }*/
 
                         float f3 = 0.05F;
                         entityitem.motionX = (double)((float)world.rand.nextGaussian() * f3);

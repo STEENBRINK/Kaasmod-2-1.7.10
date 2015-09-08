@@ -2,17 +2,18 @@ package nl.steenbrink.kaasmod.block.tile;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import nl.steenbrink.kaasmod.init.ModFluids;
 import nl.steenbrink.kaasmod.reference.Names;
 import nl.steenbrink.kaasmod.tileentity.TileEntityCompressor;
-
 public class BlockCompressor extends BlockBasicTile {
 
     public BlockCompressor() {
@@ -33,46 +34,85 @@ public class BlockCompressor extends BlockBasicTile {
         TileEntityCompressor tileEntityCompressor = (TileEntityCompressor) world.getTileEntity(x, y, z);
         if (tileEntityCompressor == null) return false;
 
+        if (entityPlayer.isSneaking()) {
+            if (entityPlayer.getCurrentEquippedItem() == null && tileEntityCompressor.getStackInSlot(0) != null && tileEntityCompressor.canExtractItem(0, null, 0)) {
+                if (entityPlayer.inventory.addItemStackToInventory(tileEntityCompressor.getStackInSlot(0))) {
+                    tileEntityCompressor.setInventorySlotContents(0, null);
+                }
+            }
+            return true;
+        }
+
         if (entityPlayer.getCurrentEquippedItem() != null) {
             ItemStack equipedItem = entityPlayer.getCurrentEquippedItem();
+            System.out.println("Clicked! " + equipedItem.getUnlocalizedName());
 
             FluidStack fluidItem = FluidContainerRegistry.getFluidForFilledItem(equipedItem);
             if (fluidItem != null) {
                 int capacity = tileEntityCompressor.fill(ForgeDirection.UNKNOWN, fluidItem, false);
+                System.out.println("" + capacity);
                 if (capacity > 0) {
-                    tileEntityCompressor.fill(ForgeDirection.UNKNOWN, fluidItem, true);
-                    if (!entityPlayer.capabilities.isCreativeMode) {
-                        if (equipedItem.getItem() == Items.potionitem && equipedItem.getItemDamage() == 0) {
-                            entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem, new ItemStack(Items.glass_bottle, 1, 0));
-                        } else {
+                    String curdName = ""+ModFluids.fluidCurd.getUnlocalizedName();
+                    String fluidItemName = ""+fluidItem.getUnlocalizedName();
+                    if(curdName.equals(fluidItemName)) {
+                        tileEntityCompressor.fill(ForgeDirection.UNKNOWN, fluidItem, true);
+                        if (!entityPlayer.capabilities.isCreativeMode) {
                             entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem, getContainer(equipedItem));
                         }
-                    }
-                }
-            } else if (FluidContainerRegistry.isContainer(equipedItem)) {
-                FluidStack available = tileEntityCompressor.drain(ForgeDirection.UNKNOWN, Integer.MAX_VALUE, false);
-                if (available != null) {
-                    ItemStack filled = FluidContainerRegistry.fillFluidContainer(available, equipedItem);
-                    FluidStack liquid = FluidContainerRegistry.getFluidForFilledItem(filled);
-                    if (liquid != null) {
-                        if (equipedItem.stackSize > 1) {
-                            if (!entityPlayer.inventory.addItemStackToInventory(filled)) {
-                                return false;
-                            } else {
-                                equipedItem.stackSize -= 1;
-                            }
-                        } else {
-                            entityPlayer.inventory.setInventorySlotContents(entityPlayer.inventory.currentItem, filled);
-                        }
-
-                        tileEntityCompressor.drain(ForgeDirection.UNKNOWN, liquid.amount, true);
-                        return true;
                     }
                 }
             }
         }
 
         return true;
+    }
+
+    @Override
+    public void breakBlock(World world, int x, int y, int z, Block block, int metadata) {
+        TileEntityCompressor tileentityfurnace = (TileEntityCompressor)world.getTileEntity(x, y, z);
+
+        if (tileentityfurnace != null)
+        {
+            for (int i1 = 0; i1 < tileentityfurnace.getSizeInventory(); ++i1)
+            {
+                ItemStack itemstack = tileentityfurnace.getStackInSlot(i1);
+
+                if (itemstack != null)
+                {
+                    float f = world.rand.nextFloat() * 0.8F + 0.1F;
+                    float f1 = world.rand.nextFloat() * 0.8F + 0.1F;
+                    float f2 = world.rand.nextFloat() * 0.8F + 0.1F;
+
+                    while (itemstack.stackSize > 0)
+                    {
+                        int j1 = world.rand.nextInt(21) + 10;
+
+                        if (j1 > itemstack.stackSize)
+                        {
+                            j1 = itemstack.stackSize;
+                        }
+
+                        itemstack.stackSize -= j1;
+                        EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
+
+                        if (itemstack.hasTagCompound())
+                        {
+                            entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
+                        }
+
+                        float f3 = 0.05F;
+                        entityitem.motionX = (double)((float)world.rand.nextGaussian() * f3);
+                        entityitem.motionY = (double)((float)world.rand.nextGaussian() * f3 + 0.2F);
+                        entityitem.motionZ = (double)((float)world.rand.nextGaussian() * f3);
+                        world.spawnEntityInWorld(entityitem);
+                    }
+                }
+            }
+
+            world.func_147453_f(x, y, z, block);
+        }
+
+        super.breakBlock(world, x, y, z, block, metadata);
     }
 
     private ItemStack getContainer(ItemStack item) {
@@ -87,4 +127,5 @@ public class BlockCompressor extends BlockBasicTile {
             return item;
         }
     }
+
 }

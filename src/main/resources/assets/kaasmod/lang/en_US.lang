@@ -23,6 +23,7 @@ tile.kaasmod:toaster.name=Toaster
 tile.kaasmod:compressor.name=Compressor
 tile.kaasmod:cheese.name=Cheese
 tile.kaasmod:youngCheese.name=Young Cheese
+tile.kaasmod:cheeseShelf.name=Cheese Shelf
 
 #Creativetab
 itemGroup.kaasmod=Steenbrink's Kaasmod
