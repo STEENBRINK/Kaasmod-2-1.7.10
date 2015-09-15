@@ -2,6 +2,7 @@ package nl.steenbrink.kaasmod.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
+import nl.steenbrink.kaasmod.tileentity.TileEntityCheeseShelf;
 import nl.steenbrink.kaasmod.tileentity.TileEntityCompressor;
 import nl.steenbrink.kaasmod.tileentity.TileEntityStirlingMachine;
 
@@ -11,5 +12,6 @@ public class ModTileEntities
         GameRegistry.registerTileEntity(TileEntityBarrel.class, "tileBarrel");
         GameRegistry.registerTileEntity(TileEntityStirlingMachine.class, "tileStirlingMachine");
         GameRegistry.registerTileEntity(TileEntityCompressor.class, "tileCompressor");
+        GameRegistry.registerTileEntity(TileEntityCheeseShelf.class, "tileCheeseShelf");
     }
 }

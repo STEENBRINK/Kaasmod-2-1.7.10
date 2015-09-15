@@ -1,4 +1,5 @@
 package nl.steenbrink.kaasmod.client.renderer.item;
+
 import cpw.mods.fml.client.FMLClientHandler;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
