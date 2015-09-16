@@ -29,6 +29,7 @@ public class Names {
         public static final String RENNET_BUCKET = "rennetBucket";
         public static final String LACTIC_ACID_BUCKET = "lacticAcidBucket";
         public static final String CHEESE_SLICE = "cheeseSlice";
+        public static final String CHEESE_BRICK = "cheeseBrick";
 
     }
 

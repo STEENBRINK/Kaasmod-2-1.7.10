@@ -35,9 +35,9 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
         // Using the inserted items
         if (this.getStackInSlot(0) != null && !isCrafting) {
             // Applying crafting possibilities
-            if(this.inventory[0] == new ItemStack(ModBlocks.blockYoungCheese)) {
+            if(this.inventory[0].getUnlocalizedName().equals(ModBlocks.blockYoungCheese.getUnlocalizedName())) {
                 this.isCrafting = true;
-                this.craftingTimer = 120 * 20;
+                this.craftingTimer = 10 * 20;
             }
         }
 
@@ -50,7 +50,7 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
                 craftingTimer--;
                 if (craftingTimer % 20 == 0) {
                     this.shouldUpdate = true;
-                    System.out.println("Update!");
+                    System.out.println("Update!" + craftingTimer);
                 }
                 if (craftingTimer <= 0) {
                     //Crafting

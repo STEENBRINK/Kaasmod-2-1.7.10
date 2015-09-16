@@ -4,6 +4,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.ShapedRecipes;
+import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 
@@ -11,6 +13,20 @@ public class Recipes
 {
     public static void init()
     {
+        //Machines
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockBarrel), "P P", "PBP", "PPP", 'P', new ItemStack(Blocks.planks), 'B', new ItemStack(Items.bucket)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockStirlingMachine), "ISI", "IKI", "PBP", 'I', new ItemStack(Items.iron_ingot), 'S', new ItemStack(Items.stick), 'K', new ItemStack(ModItems.itemKnife), 'P', new ItemStack(Blocks.planks), 'B', new ItemStack(Items.bucket)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCompressor), "IXI", "IBI", "PPP", 'I', new ItemStack(Items.iron_ingot), 'X', Blocks.light_weighted_pressure_plate, 'B', new ItemStack(Items.bucket), 'P', new ItemStack(Blocks.planks)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCheeseShelf), "WWW", 'W', new ItemStack(Blocks.wooden_pressure_plate)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "I  ", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.light_weighted_pressure_plate)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "  I", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.light_weighted_pressure_plate)));
+
+        //Blocks
+
+        //Items
+        GameRegistry.addSmelting(new ItemStack());
+
+
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemStomachSlice, 5), new ItemStack(ModItems.itemStomach), new ItemStack(ModItems.itemKnife)));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemBreadSlice, 5), new ItemStack(Items.bread), new ItemStack(ModItems.itemKnife)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.itemKnife), "I ", " S", 'I', new ItemStack(Items.iron_ingot), 'S', new ItemStack(Items.stick)));

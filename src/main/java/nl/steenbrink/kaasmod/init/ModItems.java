@@ -23,6 +23,7 @@ public class ModItems {
     public static final Item itemStomachSlice = new ItemBasic().setUnlocalizedName(Names.Items.STOMACH_SLICE);
     public static final Item itemBreadSlice = new ItemBasicFood(2, 0.2f, false).setUnlocalizedName(Names.Items.BREAD_SLICE);
     public static final Item itemCheeseSlice = new ItemBasicFood(2, 0.2f, false).setUnlocalizedName(Names.Items.CHEESE_SLICE);
+    public static final Item itemCHeeseBrick = new ItemBasic().setUnlocalizedName(Names.Items.CHEESE_BRICK);
 
     public static void init() {
         GameRegistry.registerItem(itemStomach, Names.Items.STOMACH);
@@ -38,6 +39,7 @@ public class ModItems {
         GameRegistry.registerItem(itemCurdledMilkBucket, Names.Items.CURDLED_MILK_BUCKET);
         GameRegistry.registerItem(itemCurdBucket, Names.Items.CURD_BUCKET);
         GameRegistry.registerItem(itemCheeseSlice, Names.Items.CHEESE_SLICE);
+        GameRegistry.registerItem(itemCHeeseBrick, Names.Items.CHEESE_BRICK);
     }
 
 }
