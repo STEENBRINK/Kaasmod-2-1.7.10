@@ -22,10 +22,11 @@ public class Recipes
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "  I", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.light_weighted_pressure_plate)));
 
         //Blocks
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCheeseBricks, 4), "CC", "CC", 'C', new ItemStack(ModItems.itemCheeseBrick)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockSmoothCheese, 4), "CC", "CC", 'C', new ItemStack(ModItems.itemCheeseSlice)));
 
         //Items
-        GameRegistry.addSmelting(new ItemStack());
-
+        GameRegistry.addSmelting(new ItemStack(ModItems.itemCheeseSlice), new ItemStack(ModItems.itemCheeseBrick), 2);
 
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemStomachSlice, 5), new ItemStack(ModItems.itemStomach), new ItemStack(ModItems.itemKnife)));
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemBreadSlice, 5), new ItemStack(Items.bread), new ItemStack(ModItems.itemKnife)));
