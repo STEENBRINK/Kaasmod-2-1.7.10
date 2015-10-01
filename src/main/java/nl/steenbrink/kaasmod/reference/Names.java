@@ -30,6 +30,9 @@ public class Names {
         public static final String LACTIC_ACID_BUCKET = "lacticAcidBucket";
         public static final String CHEESE_SLICE = "cheeseSlice";
         public static final String CHEESE_BRICK = "cheeseBrick";
+        public static final String CHEESE_BACON_BREAD = "cheeseBaconBread";
+        public static final String CHEESE_BREAD = "cheeseBread";
+        public static final String TOSTI = "tosti";
 
     }
 

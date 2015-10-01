@@ -12,6 +12,10 @@ item.kaasmod:rennetBucket.name=Rennet Bucket
 item.kaasmod:curdledMilkBucket.name=Curdled Milk Bucket
 item.kaasmod:curdBucket.name=Curd Bucket
 item.kaasmod:cheeseSlice.name=Cheese Slice
+item.kaasmod:cheeseBaconBread.name=Cheese Bacon Bread
+item.kaasmod:cheeseBread.name=Cheese Bread
+item.kaasmod:tosti.name=Tosti
+item.kaasmod:cheeseBrick.name=Cheese Brick
 
 #Blocks
 tile.kaasmod:barrel.name=Barrel

@@ -12,10 +12,7 @@ import nl.steenbrink.kaasmod.client.renderer.tileentity.TileEntityRendererCheese
 import nl.steenbrink.kaasmod.client.renderer.tileentity.TileEntityRendererCompressor;
 import nl.steenbrink.kaasmod.client.renderer.tileentity.TileEntityRendererStirlingMachine;
 import nl.steenbrink.kaasmod.init.ModBlocks;
-import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
-import nl.steenbrink.kaasmod.tileentity.TileEntityCheeseShelf;
-import nl.steenbrink.kaasmod.tileentity.TileEntityCompressor;
-import nl.steenbrink.kaasmod.tileentity.TileEntityStirlingMachine;
+import nl.steenbrink.kaasmod.tileentity.*;
 
 public class ClientProxy extends CommonProxy {
     @Override
@@ -31,5 +28,8 @@ public class ClientProxy extends CommonProxy {
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCheeseShelf.class, new TileEntityRendererCheeseShelf());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.blockCheeseShelf), new ItemRendererCheeseShelf());
+
+        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntitiyToaster.class, new TileEntityRendererCheeseShelf());
+        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.blockToaster), new ItemRendererCheeseShelf());
     }
 }

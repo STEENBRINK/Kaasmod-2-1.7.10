@@ -9,11 +9,13 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import nl.steenbrink.kaasmod.init.ModBlocks;
+import nl.steenbrink.kaasmod.init.ModItems;
 
-public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory{
+public class TileEntitiyToaster extends TileEntity implements ISidedInventory {
 
-    public TileEntityCheeseShelf() { super(); }
+    public TileEntitiyToaster() {
+        super();
+    }
 
     private boolean shouldUpdate = true;
     private boolean isCrafting = false;
@@ -33,7 +35,7 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
         // Using the inserted items
         if (this.getStackInSlot(0) != null && !isCrafting) {
             // Applying crafting possibilities
-            if(this.inventory[0].getUnlocalizedName().equals(ModBlocks.blockYoungCheese.getUnlocalizedName())) {
+            if(this.inventory[0] == new ItemStack(ModItems.itemCheeseBaconBread)) {
                 this.isCrafting = true;
                 this.craftingTimer = 10 * 20;
             }
@@ -52,7 +54,7 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
                 }
                 if (craftingTimer <= 0) {
                     //Crafting
-                    this.setInventorySlotContents(0, new ItemStack(ModBlocks.blockCheese));
+                    this.setInventorySlotContents(0, new ItemStack(ModItems.itemTosti));
                     this.isCrafting = false;
                     this.craftingTimer = 0;
                     this.shouldUpdate = true;
@@ -65,7 +67,7 @@ public class TileEntityCheeseShelf extends TileEntity implements ISidedInventory
     public void readFromNBT(NBTTagCompound nbtTagCompound) {
         super.readFromNBT(nbtTagCompound);
 
-       // Read the crafting status
+        // Read the crafting status
         this.isCrafting = nbtTagCompound.getBoolean("IsCrafting");
         this.craftingTimer = nbtTagCompound.getInteger("CraftingTimer");
 

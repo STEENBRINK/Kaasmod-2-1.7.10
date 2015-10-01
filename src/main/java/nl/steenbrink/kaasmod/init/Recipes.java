@@ -20,6 +20,7 @@ public class Recipes
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCheeseShelf), "WWW", 'W', new ItemStack(Blocks.wooden_pressure_plate)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "I  ", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.light_weighted_pressure_plate)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "  I", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.light_weighted_pressure_plate)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCheese), "KKK", "KKK", 'K', new ItemStack(ModItems.itemCheeseSlice)));
 
         //Blocks
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCheeseBricks, 4), "CC", "CC", 'C', new ItemStack(ModItems.itemCheeseBrick)));
@@ -29,8 +30,12 @@ public class Recipes
         GameRegistry.addSmelting(new ItemStack(ModItems.itemCheeseSlice), new ItemStack(ModItems.itemCheeseBrick), 2);
 
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemStomachSlice, 5), new ItemStack(ModItems.itemStomach), new ItemStack(ModItems.itemKnife)));
-        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemBreadSlice, 5), new ItemStack(Items.bread), new ItemStack(ModItems.itemKnife)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.itemKnife), "I ", " S", 'I', new ItemStack(Items.iron_ingot), 'S', new ItemStack(Items.stick)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockBarrel), "P P", "PBP", "PPP", 'P', (new ItemStack(Blocks.planks)), 'B', new ItemStack(Items.bucket)));
+
+        //Food
+        GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemBreadSlice, 5), new ItemStack(Items.bread), new ItemStack(ModItems.itemKnife)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.itemCheeseBread), "B", "C", "B"));
+
     }
 }
