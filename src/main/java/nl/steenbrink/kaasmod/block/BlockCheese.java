@@ -1,10 +1,12 @@
 package nl.steenbrink.kaasmod.block;
 
+import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockCake;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -47,14 +49,15 @@ public class BlockCheese extends BlockCake {
 
     @Override
     public void onBlockDestroyedByPlayer(World world, int x, int y, int z, int meta) {
-        if(isYoungCheese) {
+        String currentEquiped = FMLClientHandler.instance().getClient().thePlayer.getCurrentEquippedItem().getUnlocalizedName();
+        if (isYoungCheese) {
             if (!world.isRemote) {
                 EntityItem k = new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModBlocks.blockYoungCheese));
                 k.setVelocity(0, 0.2, 0);
                 world.spawnEntityInWorld(k);
             }
-        }else{
-            if (!world.isRemote && meta < 6) {
+        } else {
+            if (!world.isRemote && meta < 6 && currentEquiped.equals(ModItems.itemCheeseSlicer.getUnlocalizedName())) {
 
                 EntityItem k = new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModItems.itemCheeseSlice, 6 - meta));
                 k.setVelocity(0, 0.2, 0);
@@ -120,6 +123,8 @@ public class BlockCheese extends BlockCake {
                 }
             }
     }
+
+
 
 }
 
