@@ -1,8 +1,10 @@
 package nl.steenbrink.kaasmod.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 import nl.steenbrink.kaasmod.item.ItemBasic;
+import nl.steenbrink.kaasmod.item.ItemCheeseSlicer;
 import nl.steenbrink.kaasmod.item.ItemKnife;
 import nl.steenbrink.kaasmod.item.bucket.*;
 import nl.steenbrink.kaasmod.item.ItemBasicFood;
@@ -23,11 +25,12 @@ public class ModItems {
     public static final Item itemKnife = new ItemKnife();
     public static final Item itemStomachSlice = new ItemBasic().setUnlocalizedName(Names.Items.STOMACH_SLICE);
     public static final Item itemCheeseBrick = new ItemBasic().setUnlocalizedName(Names.Items.CHEESE_BRICK);
+    public static final Item itemCheeseSlicer = new ItemCheeseSlicer(Material.iron);
     /*Food*/
     public static final Item itemBreadSlice = new ItemBasicFood(1, 0.2f, false).setUnlocalizedName(Names.Items.BREAD_SLICE);
     public static final Item itemCheeseSlice = new ItemBasicFood(2, 0.2f, false).setUnlocalizedName(Names.Items.CHEESE_SLICE);
-    public static final Item itemCheeseBaconBread = new ItemBasicFood(15, 1.5f, false).setUnlocalizedName(Names.Items.CHEESE_BACON_BREAD);
-    public static final Item itemCheeseBread = new ItemBasicFood(7, 1.4f, false).setUnlocalizedName(Names.Items.CHEESE_BREAD);
+    public static final Item itemCheeseBaconBread = new ItemBasicFood(12, 1.5f, false).setUnlocalizedName(Names.Items.CHEESE_BACON_BREAD);
+    public static final Item itemCheeseBread = new ItemBasicFood(6, 1.4f, false).setUnlocalizedName(Names.Items.CHEESE_BREAD);
     public static final Item itemTosti = new ItemBasicFood(20, 1.8f, false).setUnlocalizedName(Names.Items.TOSTI);
 
     public static void init() {
@@ -48,6 +51,7 @@ public class ModItems {
         GameRegistry.registerItem(itemCheeseBaconBread, Names.Items.CHEESE_BACON_BREAD);
         GameRegistry.registerItem(itemCheeseBread, Names.Items.CHEESE_BREAD);
         GameRegistry.registerItem(itemTosti, Names.Items.TOSTI);
+        GameRegistry.registerItem(itemCheeseSlicer, Names.Items.CHEESE_SLICER);
     }
 
 }

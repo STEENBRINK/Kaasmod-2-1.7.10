@@ -31,11 +31,12 @@ public class Recipes
 
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemStomachSlice, 5), new ItemStack(ModItems.itemStomach), new ItemStack(ModItems.itemKnife)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.itemKnife), "I ", " S", 'I', new ItemStack(Items.iron_ingot), 'S', new ItemStack(Items.stick)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockBarrel), "P P", "PBP", "PPP", 'P', (new ItemStack(Blocks.planks)), 'B', new ItemStack(Items.bucket)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockBarrel), "P P", "PBP", "PPP", 'P', new ItemStack(Blocks.planks), 'B', new ItemStack(Items.bucket)));
 
         //Food
         GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ModItems.itemBreadSlice, 5), new ItemStack(Items.bread), new ItemStack(ModItems.itemKnife)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.itemCheeseBread), "B", "C", "B"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.itemCheeseBread), "B", "C", "B", 'B', new ItemStack(ModItems.itemBreadSlice), 'C', new ItemStack(ModItems.itemCheeseSlice)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.itemCheeseBaconBread), " B ", "CPC", " B ", 'B', new ItemStack(ModItems.itemBreadSlice), 'C', new ItemStack(ModItems.itemCheeseSlice), 'P', new ItemStack(Items.cooked_porkchop)));
 
     }
 }

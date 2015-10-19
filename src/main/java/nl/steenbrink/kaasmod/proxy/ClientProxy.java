@@ -3,14 +3,8 @@ package nl.steenbrink.kaasmod.proxy;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
-import nl.steenbrink.kaasmod.client.renderer.item.ItemRendererBarrel;
-import nl.steenbrink.kaasmod.client.renderer.item.ItemRendererCheeseShelf;
-import nl.steenbrink.kaasmod.client.renderer.item.ItemRendererCompressor;
-import nl.steenbrink.kaasmod.client.renderer.item.ItemRendererStirlingMachine;
-import nl.steenbrink.kaasmod.client.renderer.tileentity.TileEntityRendererBarrel;
-import nl.steenbrink.kaasmod.client.renderer.tileentity.TileEntityRendererCheeseShelf;
-import nl.steenbrink.kaasmod.client.renderer.tileentity.TileEntityRendererCompressor;
-import nl.steenbrink.kaasmod.client.renderer.tileentity.TileEntityRendererStirlingMachine;
+import nl.steenbrink.kaasmod.client.renderer.item.*;
+import nl.steenbrink.kaasmod.client.renderer.tileentity.*;
 import nl.steenbrink.kaasmod.init.ModBlocks;
 import nl.steenbrink.kaasmod.tileentity.*;
 
@@ -29,7 +23,7 @@ public class ClientProxy extends CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityCheeseShelf.class, new TileEntityRendererCheeseShelf());
         MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.blockCheeseShelf), new ItemRendererCheeseShelf());
 
-        //ClientRegistry.bindTileEntitySpecialRenderer(TileEntitiyToaster.class, new TileEntityRendererCheeseShelf());
-        //MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.blockToaster), new ItemRendererCheeseShelf());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntitiyToaster.class, new TileEntityRendererToaster());
+        MinecraftForgeClient.registerItemRenderer(Item.getItemFromBlock(ModBlocks.blockToaster), new ItemRendererToaster());
     }
 }

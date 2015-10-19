@@ -33,6 +33,7 @@ public class Names {
         public static final String CHEESE_BACON_BREAD = "cheeseBaconBread";
         public static final String CHEESE_BREAD = "cheeseBread";
         public static final String TOSTI = "tosti";
+        public static final String CHEESE_SLICER = "cheeseSlicer";
 
     }
 
