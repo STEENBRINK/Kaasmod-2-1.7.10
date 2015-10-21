@@ -24,7 +24,7 @@ public class Kaasmod {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        // Initialize the items and blocks
+        // Initialize the items, fluids and blocks
         ModFluids.init();
         ModBlocks.init();
         ModItems.init();

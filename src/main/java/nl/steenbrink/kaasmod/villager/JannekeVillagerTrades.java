@@ -18,6 +18,7 @@ public class JannekeVillagerTrades implements VillagerRegistry.IVillageTradeHand
     @Override
     public void manipulateTradesForVillager(EntityVillager villager, MerchantRecipeList recipeList, Random random) {
         if (villager.getProfession() == Names.Villagers.JANNEKE) {
+            recipeList.addToListWithCheck(new MerchantRecipe(new ItemStack(Items.emerald, 5), new ItemStack(ModItems.itemStarter, 2)));
             recipeList.addToListWithCheck(new MerchantRecipe(new ItemStack(Items.emerald, 3), new ItemStack(ModItems.itemCheeseBaconBread, 2)));
             recipeList.addToListWithCheck(new MerchantRecipe(new ItemStack(Items.emerald, 2), new ItemStack(ModBlocks.blockCheese)));
             recipeList.addToListWithCheck(new MerchantRecipe(new ItemStack(Items.iron_ingot, 2), new ItemStack(ModItems.itemCheeseSlicer)));

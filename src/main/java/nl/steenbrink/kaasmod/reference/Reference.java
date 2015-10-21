@@ -11,7 +11,7 @@ public class Reference {
 
     /* Paths */
     public static final String RESOURCE_FOLDER = MOD_ID.toLowerCase();
-    public static final String PATH_RESOURCES = "/assets/" + RESOURCE_FOLDER + "/textures/";
-    public static final String PATH_JANNEKE = PATH_RESOURCES + "janneke/";
+    public static final String PATH_RESOURCES = "/textures/";
+    public static final String PATH_JANNEKE = PATH_RESOURCES + "entities/villager/";
 
 }
