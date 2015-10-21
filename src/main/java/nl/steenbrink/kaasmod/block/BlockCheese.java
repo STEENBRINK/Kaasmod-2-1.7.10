@@ -57,11 +57,16 @@ public class BlockCheese extends BlockCake {
                 world.spawnEntityInWorld(k);
             }
         } else {
-            if (!world.isRemote && meta < 6 && currentEquiped.equals(ModItems.itemCheeseSlicer.getUnlocalizedName())) {
-
-                EntityItem k = new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModItems.itemCheeseSlice, 6 - meta));
-                k.setVelocity(0, 0.2, 0);
-                world.spawnEntityInWorld(k);
+            if (!world.isRemote && meta < 6) {
+                if(currentEquiped.equals(ModItems.itemCheeseSlicer.getUnlocalizedName())) {
+                    EntityItem k = new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModItems.itemCheeseSlice, 6 - meta));
+                    k.setVelocity(0, 0.2, 0);
+                    world.spawnEntityInWorld(k);
+                } else {
+                    EntityItem k = new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, new ItemStack(ModBlocks.blockCheese));
+                    k.setVelocity(0, 0.2, 0);
+                    world.spawnEntityInWorld(k);
+                }
             }
         }
     }

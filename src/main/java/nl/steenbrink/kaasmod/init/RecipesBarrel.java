@@ -1,5 +1,6 @@
 package nl.steenbrink.kaasmod.init;
 
+import cpw.mods.fml.common.Mod;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -47,6 +48,12 @@ public class RecipesBarrel {
                 new ItemStack(ModItems.itemDirtySalt, 1),
                 null,
                 new ItemStack(ModItems.itemCleanSalt, 1),
+                1 * 20);
+        INSTANCE.addFluidItemCrafting(
+                new FluidStack(ModFluids.fluidMilk, 10000),
+                new ItemStack(ModItems.itemStarter, 1),
+                new FluidStack(ModFluids.fluidLacticAcid, 10000),
+                null,
                 1 * 20);
     }
 

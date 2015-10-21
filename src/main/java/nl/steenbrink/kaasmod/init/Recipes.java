@@ -18,8 +18,8 @@ public class Recipes
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockStirlingMachine), "ISI", "IKI", "PBP", 'I', new ItemStack(Items.iron_ingot), 'S', new ItemStack(Items.stick), 'K', new ItemStack(ModItems.itemKnife), 'P', new ItemStack(Blocks.planks), 'B', new ItemStack(Items.bucket)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCompressor), "IXI", "IBI", "PPP", 'I', new ItemStack(Items.iron_ingot), 'X', Blocks.light_weighted_pressure_plate, 'B', new ItemStack(Items.bucket), 'P', new ItemStack(Blocks.planks)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCheeseShelf), "WWW", 'W', new ItemStack(Blocks.wooden_pressure_plate)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "I  ", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.light_weighted_pressure_plate)));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "  I", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.light_weighted_pressure_plate)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "I  ", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.heavy_weighted_pressure_plate)));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockToaster), "IPI", "  I", "IPI", 'I', new ItemStack(Items.iron_ingot), 'P', new ItemStack(Blocks.heavy_weighted_pressure_plate)));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.blockCheese), "KKK", "KKK", 'K', new ItemStack(ModItems.itemCheeseSlice)));
 
         //Blocks

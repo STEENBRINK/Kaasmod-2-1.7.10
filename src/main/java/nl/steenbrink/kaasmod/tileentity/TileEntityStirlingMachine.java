@@ -127,15 +127,15 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
         } else {
             if (fluidStack.amount == 0) {
                 if (resource.amount > fluidCapacity) {
-                    fluidStack = new FluidStack(resource.getFluidID(), fluidCapacity);
+                    fluidStack = new FluidStack(resource.fluidID, fluidCapacity);
                     return fluidCapacity;
                 } else {
-                    fluidStack = new FluidStack(resource.getFluidID(), resource.amount);
+                    fluidStack = new FluidStack(resource.fluidID, resource.amount);
                     return resource.amount;
                 }
             } else if (resource.getFluid() == fluidStack.getFluid()) {
                 int insertAmount = Math.min(resource.amount, fluidCapacity);
-                fluidStack = new FluidStack(resource.getFluidID(), insertAmount);
+                fluidStack = new FluidStack(resource.fluidID, insertAmount);
                 return insertAmount;
             }
         }
@@ -154,14 +154,14 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
     public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain)
     {
         if (!canDrain(from, null)) return new FluidStack(0, 0);
-        if (fluidStack.amount == 0 || fluidStack.getFluidID() == 0) return new FluidStack(0, 0);
+        if (fluidStack.amount == 0 || fluidStack.fluidID == 0) return new FluidStack(0, 0);
         this.shouldUpdate = true;
         int drainAmount = Math.min(maxDrain, fluidStack.amount);
 
         if (!doDrain) {
-            return new FluidStack(FluidRegistry.getFluid(fluidStack.getFluidID()), drainAmount);
+            return new FluidStack(FluidRegistry.getFluid(fluidStack.fluidID), drainAmount);
         } else {
-            FluidStack drained = new FluidStack(FluidRegistry.getFluid(fluidStack.getFluidID()), drainAmount);
+            FluidStack drained = new FluidStack(FluidRegistry.getFluid(fluidStack.fluidID), drainAmount);
             fluidStack.amount -= drainAmount;
             return drained;
         }

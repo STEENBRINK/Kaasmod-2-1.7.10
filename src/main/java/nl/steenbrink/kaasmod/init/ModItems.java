@@ -26,6 +26,7 @@ public class ModItems {
     public static final Item itemStomachSlice = new ItemBasic().setUnlocalizedName(Names.Items.STOMACH_SLICE);
     public static final Item itemCheeseBrick = new ItemBasic().setUnlocalizedName(Names.Items.CHEESE_BRICK);
     public static final Item itemCheeseSlicer = new ItemCheeseSlicer();
+    public static final Item itemStarter = new ItemBasic().setUnlocalizedName(Names.Items.STARTER);
     /*Food*/
     public static final Item itemBreadSlice = new ItemBasicFood(1, 0.2f, false).setUnlocalizedName(Names.Items.BREAD_SLICE);
     public static final Item itemCheeseSlice = new ItemBasicFood(2, 0.2f, false).setUnlocalizedName(Names.Items.CHEESE_SLICE);
@@ -52,6 +53,7 @@ public class ModItems {
         GameRegistry.registerItem(itemCheeseBread, Names.Items.CHEESE_BREAD);
         GameRegistry.registerItem(itemTosti, Names.Items.TOSTI);
         GameRegistry.registerItem(itemCheeseSlicer, Names.Items.CHEESE_SLICER);
+        GameRegistry.registerItem(itemStarter, Names.Items.STARTER);
     }
 
 }

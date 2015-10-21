@@ -5,12 +5,13 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.MinecraftForge;
 import nl.steenbrink.kaasmod.handler.EntityEventHandler;
+import nl.steenbrink.kaasmod.handler.ModWorldGen;
 import nl.steenbrink.kaasmod.init.*;
 import nl.steenbrink.kaasmod.proxy.IProxy;
 import nl.steenbrink.kaasmod.reference.Reference;
-import nl.steenbrink.kaasmod.tileentity.TileEntityBarrel;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.MOD_VERSION)
 public class Kaasmod {
@@ -27,6 +28,7 @@ public class Kaasmod {
         ModFluids.init();
         ModBlocks.init();
         ModItems.init();
+        Janneke.init();
         ModFluids.registerBuckets();
     }
 
@@ -40,6 +42,8 @@ public class Kaasmod {
 
         Recipes.init();
         RecipesBarrel.init();
+
+        GameRegistry.registerWorldGenerator(new ModWorldGen(), 0);
     }
 
     @Mod.EventHandler

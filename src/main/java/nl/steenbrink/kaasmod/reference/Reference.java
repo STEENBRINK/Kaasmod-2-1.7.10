@@ -8,4 +8,10 @@ public class Reference {
     /* Class constants */
     public static final String CLASS_PROXY_CLIENT = "nl.steenbrink.kaasmod.proxy.ClientProxy";
     public static final String CLASS_PROXY_SERVER = "nl.steenbrink.kaasmod.proxy.ServerProxy";
+
+    /* Paths */
+    public static final String RESOURCE_FOLDER = MOD_ID.toLowerCase();
+    public static final String PATH_RESOURCES = "/assets/" + RESOURCE_FOLDER + "/textures/";
+    public static final String PATH_JANNEKE = PATH_RESOURCES + "janneke/";
+
 }

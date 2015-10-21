@@ -34,6 +34,7 @@ public class Names {
         public static final String CHEESE_BREAD = "cheeseBread";
         public static final String TOSTI = "tosti";
         public static final String CHEESE_SLICER = "cheeseSlicer";
+        public static final String STARTER = "starter";
 
     }
 
@@ -47,6 +48,10 @@ public class Names {
         public static final String CURD = "curd";
         public static final String CRAFTING_FLUID = "craftingFluid";
 
+    }
+
+    public static class Villagers {
+        public static final int JANNEKE = 9050;
     }
 
 }

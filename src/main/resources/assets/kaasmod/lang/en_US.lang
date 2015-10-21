@@ -16,6 +16,8 @@ item.kaasmod:cheeseBaconBread.name=Cheese Bacon Bread
 item.kaasmod:cheeseBread.name=Cheese Bread
 item.kaasmod:tosti.name=Tosti
 item.kaasmod:cheeseBrick.name=Cheese Brick
+item.kaasmod:cheeseSlicer.name=Cheese Slicer
+item.kaasmod:starter.name=Starter
 
 #Blocks
 tile.kaasmod:barrel.name=Barrel
