@@ -1,5 +1,6 @@
 package nl.steenbrink.kaasmod.client.renderer.tileentity;
 
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -19,7 +20,7 @@ public class TileEntityRendererToaster extends TileEntitySpecialRenderer {
         TileEntitiyToaster tileEntityToaster = (TileEntitiyToaster) te;
 
         /*
-         * Render the compressor model with the correct texture over it
+         * Render the toaster model with the correct texture over it
          */
         GL11.glPushMatrix();
         GL11.glTranslatef((float) x + 0.5F, (float) y + 1.5F, (float) z + 0.5F);
@@ -29,12 +30,14 @@ public class TileEntityRendererToaster extends TileEntitySpecialRenderer {
         this.modelToaster.render(null, 0.0f, 0.0f, -0.1f, 0.0f, 0.0f, 0.0625f);
         GL11.glPopMatrix();
         GL11.glPopMatrix();
-
-        /*
-         * Render the fluid inside of the compressor
+    /*
+         * Render the internal item
          */
-        //if (tileEntityCheeseShelf.craftingTimer > 0) {
-            //doshit
-        //}
+        if (tileEntityToaster.getStackInSlot(0) != null) {
+            GL11.glPushMatrix();
+            this.bindTexture(TextureMap.locationItemsTexture);
+            this.modelToaster.renderItem(tileEntityToaster, x, y, z);
+            GL11.glPopMatrix();
+        }
     }
 }

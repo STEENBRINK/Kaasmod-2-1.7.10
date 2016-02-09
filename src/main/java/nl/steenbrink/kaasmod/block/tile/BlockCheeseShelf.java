@@ -26,9 +26,9 @@ public class BlockCheeseShelf extends BlockBasicTile{
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
-        System.out.println("Activated!");
+        //System.out.println("Activated!");
         if (entityPlayer == null) {
-            System.out.println("false!");
+            //System.out.println("false!");
             return false;
         }
 
@@ -36,7 +36,7 @@ public class BlockCheeseShelf extends BlockBasicTile{
         if (tileEntityCheeseShelf == null) {return false;}
 
         if (entityPlayer.isSneaking()) {
-            System.out.println("Sne-aking");
+            //System.out.println("Sne-aking");
             if (entityPlayer.getCurrentEquippedItem() == null && tileEntityCheeseShelf.getStackInSlot(0) != null && tileEntityCheeseShelf.canExtractItem(0, null, 0)) {
                 if (entityPlayer.inventory.addItemStackToInventory(tileEntityCheeseShelf.getStackInSlot(0))) {
                     tileEntityCheeseShelf.setInventorySlotContents(0, null);
@@ -44,16 +44,18 @@ public class BlockCheeseShelf extends BlockBasicTile{
             }
             return true;
         }
-
-        if (entityPlayer.getCurrentEquippedItem().getUnlocalizedName().equals(ModBlocks.blockYoungCheese.getUnlocalizedName())) {
-            System.out.println("YoungCheese!");
-            ItemStack equipedItem = entityPlayer.getCurrentEquippedItem();
+        if (entityPlayer.getCurrentEquippedItem() != null) {
+            //System.out.println("Not Null!!");
+            if (entityPlayer.getCurrentEquippedItem().getUnlocalizedName().equals(ModBlocks.blockYoungCheese.getUnlocalizedName())) {
+                //System.out.println("YoungCheese!");
+                ItemStack equipedItem = entityPlayer.getCurrentEquippedItem();
                 if (tileEntityCheeseShelf.getStackInSlot(0) == null) {
                     tileEntityCheeseShelf.setInventorySlotContents(0, equipedItem.splitStack(1));
                 }
-        }else{
-            System.out.println("false :(");
-            System.out.println(entityPlayer.getCurrentEquippedItem().getUnlocalizedName());
+            } //else {
+                //System.out.println("false :(");
+                //System.out.println(entityPlayer.getCurrentEquippedItem().getUnlocalizedName());
+            //}
         }
 
         return true;

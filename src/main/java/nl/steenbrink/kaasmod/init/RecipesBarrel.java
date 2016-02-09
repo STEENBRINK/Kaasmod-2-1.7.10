@@ -1,6 +1,5 @@
 package nl.steenbrink.kaasmod.init;
 
-import cpw.mods.fml.common.Mod;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -30,31 +29,31 @@ public class RecipesBarrel {
                 new ItemStack(ModItems.itemCleanSalt, 1),
                 new FluidStack(ModFluids.fluidSaltWater, 1000),
                 null,
-                1 * 20);
+                10 * 20);
         INSTANCE.addFluidItemCrafting(
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new ItemStack(Items.apple, 1),
                 new FluidStack(ModFluids.fluidVinegar, 1000),
                 null,
-                1 * 20);
+                10 * 20);
         INSTANCE.addFluidItemCrafting(
                 FluidCrafting.createCraftingFluid(new FluidStack(ModFluids.fluidSaltWater, 1000), new FluidStack(ModFluids.fluidVinegar, 1000)),
                 new ItemStack(ModItems.itemStomachSlice, 1),
                 new FluidStack(ModFluids.fluidRennet, 1000),
                 null,
-                1 * 20);
+                10 * 20);
         INSTANCE.addFluidItemCrafting(
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new ItemStack(ModItems.itemDirtySalt, 1),
                 null,
                 new ItemStack(ModItems.itemCleanSalt, 1),
-                1 * 20);
+                10 * 20);
         INSTANCE.addFluidItemCrafting(
-                new FluidStack(ModFluids.fluidMilk, 10000),
+                new FluidStack(ModFluids.fluidMilk, 1000),
                 new ItemStack(ModItems.itemStarter, 1),
-                new FluidStack(ModFluids.fluidLacticAcid, 10000),
+                new FluidStack(ModFluids.fluidLacticAcid, 1000),
                 null,
-                1 * 20);
+                10 * 20);
     }
 
     public static RecipesBarrel INSTANCE = new RecipesBarrel();

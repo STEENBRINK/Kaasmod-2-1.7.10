@@ -38,7 +38,7 @@ public class TileEntityStirlingMachine extends TileEntity implements IFluidHandl
             // Applying crafting possibilities
             if (this.fluidStack.getFluid() == ModFluids.fluidCurdledMilk) {
                 this.isCrafting = true;
-                this.craftingTimer = 20 * 120;
+                this.craftingTimer = 10 * 20;
             }
         }
 

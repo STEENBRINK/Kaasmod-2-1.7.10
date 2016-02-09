@@ -15,7 +15,15 @@ public class ModelToaster extends ModelBase
 {
     //fields
     private final RenderItem customRenderItem;
-    ModelRenderer Bottom;
+
+    ModelRenderer BottomBack;
+    ModelRenderer BottomPlate;
+    ModelRenderer BottomFront;
+    ModelRenderer Turnpoint;
+    ModelRenderer TopPlate;
+    ModelRenderer HolderLeft;
+    ModelRenderer HolderRight;
+    ModelRenderer Holder;
 
     public ModelToaster(){
         customRenderItem = new RenderItem() {
@@ -27,25 +35,81 @@ public class ModelToaster extends ModelBase
         customRenderItem.setRenderManager(RenderManager.instance);
 
         textureWidth = 64;
-        textureHeight = 64;
+        textureHeight = 32;
 
-        Bottom = new ModelRenderer(this, 0, 0);
-        Bottom.addBox(0F, 0F, 0F, 16, 1, 16);
-        Bottom.setRotationPoint(-8F, 23F, -8F);
-        Bottom.setTextureSize(64, 64);
-        Bottom.mirror = true;
-        setRotation(Bottom, 0F, 0F, 0F);
+        BottomBack = new ModelRenderer(this, 0, 0);
+        BottomBack.addBox(0F, 0F, 0F, 12, 1, 1);
+        BottomBack.setRotationPoint(-6F, 23F, 5F);
+        BottomBack.setTextureSize(64, 32);
+        BottomBack.mirror = true;
+        setRotation(BottomBack, 0F, 0F, 0F);
+        BottomPlate = new ModelRenderer(this, 0, 17);
+        BottomPlate.addBox(0F, 0F, 0F, 14, 1, 14);
+        BottomPlate.setRotationPoint(-7F, 22F, -7F);
+        BottomPlate.setTextureSize(64, 32);
+        BottomPlate.mirror = true;
+        setRotation(BottomPlate, 0F, 0F, 0F);
+        BottomFront = new ModelRenderer(this, 0, 0);
+        BottomFront.addBox(0F, 0F, 0F, 12, 1, 1);
+        BottomFront.setRotationPoint(-6F, 23F, -6F);
+        BottomFront.setTextureSize(64, 32);
+        BottomFront.mirror = true;
+        setRotation(BottomFront, 0F, 0F, 0F);
+        Turnpoint = new ModelRenderer(this, 0, 0);
+        Turnpoint.addBox(0F, 0F, 0F, 12, 1, 1);
+        Turnpoint.setRotationPoint(-6F, 21F, 7F);
+        Turnpoint.setTextureSize(64, 32);
+        Turnpoint.mirror = true;
+        setRotation(Turnpoint, 0F, 0F, 0F);
+        TopPlate = new ModelRenderer(this, 0, 17);
+        TopPlate.addBox(0F, 0F, 0F, 14, 1, 14);
+        TopPlate.setRotationPoint(-7F, 20F, -7F);
+        TopPlate.setTextureSize(64, 32);
+        TopPlate.mirror = true;
+        setRotation(TopPlate, 0F, 0F, 0F);
+        HolderLeft = new ModelRenderer(this, 0, 0);
+        HolderLeft.addBox(0F, 0F, 0F, 1, 1, 1);
+        HolderLeft.setRotationPoint(-5F, 19F, -5F);
+        HolderLeft.setTextureSize(64, 32);
+        HolderLeft.mirror = true;
+        setRotation(HolderLeft, 0F, 0F, 0F);
+        HolderRight = new ModelRenderer(this, 0, 0);
+        HolderRight.addBox(0F, 0F, 0F, 1, 1, 1);
+        HolderRight.setRotationPoint(4F, 19F, -5F);
+        HolderRight.setTextureSize(64, 32);
+        HolderRight.mirror = true;
+        setRotation(HolderRight, 0F, 0F, 0F);
+        Holder = new ModelRenderer(this, 0, 0);
+        Holder.addBox(0F, 0F, 0F, 12, 1, 1);
+        Holder.setRotationPoint(-6F, 18F, -5F);
+        Holder.setTextureSize(64, 32);
+        Holder.mirror = true;
+        setRotation(Holder, 0F, 0F, 0F);
     }
 
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5)
     {
         super.render(entity, f, f1, f2, f3, f4, f5);
         setRotationAngles(f, f1, f2, f3, f4, f5, entity);
-        Bottom.render(f5);
+        BottomBack.render(f5);
+        BottomPlate.render(f5);
+        BottomFront.render(f5);
+        Turnpoint.render(f5);
+        TopPlate.render(f5);
+        HolderLeft.render(f5);
+        HolderRight.render(f5);
+        Holder.render(f5);
     }
 
     public void simpleRender(float f5) {
-        Bottom.render(f5);
+        BottomBack.render(f5);
+        BottomPlate.render(f5);
+        BottomFront.render(f5);
+        Turnpoint.render(f5);
+        TopPlate.render(f5);
+        HolderLeft.render(f5);
+        HolderRight.render(f5);
+        Holder.render(f5);
     }
 
     public void renderInternal(int color, IIcon icon)

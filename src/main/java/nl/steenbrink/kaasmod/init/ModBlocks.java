@@ -2,8 +2,8 @@ package nl.steenbrink.kaasmod.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import nl.steenbrink.kaasmod.block.*;
 import nl.steenbrink.kaasmod.block.fluid.*;
@@ -28,7 +28,7 @@ public class ModBlocks {
     public static final Block blockCheeseShelf = new BlockCheeseShelf();
 
     //Slabs
-    public static final Block blockCheeseBricksSlab = new BlockBasicSlab(false, Material.rock, ModBlocks.blockCheeseBricks).setBlockName(Names.Blocks.CHEESE_BRICKS_SLAB);
+    public static final Block blockCheeseBricksSlab =  new BlockBasicSlab(false, Material.rock, ModBlocks.blockCheeseBricks).setBlockName(Names.Blocks.CHEESE_BRICKS_SLAB);
     public static final Block blockCheeseBricksFullSlab = new BlockBasicSlab(true, Material.rock, ModBlocks.blockCheeseBricks).setBlockName(Names.Blocks.CHEESE_BRICKS_FULL_SLAB);
     public static final Block blockSmoothCheeseSlab = new BlockBasicSlab(false, Material.rock, ModBlocks.blockSmoothCheese).setBlockName(Names.Blocks.SMOOTH_CHEESE_SLAB);
     public static final Block blockSmoothCheeseFullSlab = new BlockBasicSlab(true, Material.rock, ModBlocks.blockSmoothCheese).setBlockName(Names.Blocks.SMOOTH_CHEESE_FULL_SLAB);

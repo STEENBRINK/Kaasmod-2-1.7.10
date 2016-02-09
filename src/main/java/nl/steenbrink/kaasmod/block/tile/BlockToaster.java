@@ -1,6 +1,5 @@
 package nl.steenbrink.kaasmod.block.tile;
 
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
@@ -9,8 +8,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import nl.steenbrink.kaasmod.init.ModBlocks;
+import nl.steenbrink.kaasmod.init.ModItems;
 import nl.steenbrink.kaasmod.reference.Names;
 import nl.steenbrink.kaasmod.tileentity.TileEntitiyToaster;
+import nl.steenbrink.kaasmod.tileentity.TileEntityCheeseShelf;
 
 public class BlockToaster extends BlockBasicTile{
     public BlockToaster() {
@@ -24,17 +25,17 @@ public class BlockToaster extends BlockBasicTile{
 
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer entityPlayer, int side, float hitX, float hitY, float hitZ) {
-        System.out.println("Activated!");
+        //System.out.println("Activated!");
         if (entityPlayer == null) {
-            System.out.println("false!");
+            //System.out.println("false!");
             return false;
         }
 
         TileEntitiyToaster tileEntityToaster = (TileEntitiyToaster) world.getTileEntity(x, y, z);
-        if (tileEntityToaster == null) {return false;}
+        if (tileEntityToaster == null) { return false; }
 
         if (entityPlayer.isSneaking()) {
-            System.out.println("Sne-aking");
+            //System.out.println("Sne-aking");
             if (entityPlayer.getCurrentEquippedItem() == null && tileEntityToaster.getStackInSlot(0) != null && tileEntityToaster.canExtractItem(0, null, 0)) {
                 if (entityPlayer.inventory.addItemStackToInventory(tileEntityToaster.getStackInSlot(0))) {
                     tileEntityToaster.setInventorySlotContents(0, null);
@@ -42,16 +43,17 @@ public class BlockToaster extends BlockBasicTile{
             }
             return true;
         }
-
-        if (entityPlayer.getCurrentEquippedItem().getUnlocalizedName().equals(ModBlocks.blockYoungCheese.getUnlocalizedName())) {
-            System.out.println("YoungCheese!");
-            ItemStack equipedItem = entityPlayer.getCurrentEquippedItem();
-            if (tileEntityToaster.getStackInSlot(0) == null) {
-                tileEntityToaster.setInventorySlotContents(0, equipedItem.splitStack(1));
-            }
-        }else{
-            System.out.println("false :(");
-            System.out.println(entityPlayer.getCurrentEquippedItem().getUnlocalizedName());
+        if (entityPlayer.getCurrentEquippedItem() != null) {
+            if (entityPlayer.getCurrentEquippedItem().getUnlocalizedName().equals(ModItems.itemCheeseBaconBread.getUnlocalizedName())) {
+                //System.out.println("CheeseBaconBread!");
+                ItemStack equipedItem = entityPlayer.getCurrentEquippedItem();
+                if (tileEntityToaster.getStackInSlot(0) == null) {
+                    tileEntityToaster.setInventorySlotContents(0, equipedItem.splitStack(1));
+                }
+            } //else {
+                //System.out.println("false :(");
+                //System.out.println(entityPlayer.getCurrentEquippedItem().getUnlocalizedName());
+            //}
         }
 
         return true;
@@ -84,11 +86,6 @@ public class BlockToaster extends BlockBasicTile{
 
                         itemstack.stackSize -= j1;
                         EntityItem entityitem = new EntityItem(world, (double)((float)x + f), (double)((float)y + f1), (double)((float)z + f2), new ItemStack(itemstack.getItem(), j1, itemstack.getItemDamage()));
-
-                        /*if (itemstack.hasTagCompound())
-                        {
-                            entityitem.getEntityItem().setTagCompound((NBTTagCompound)itemstack.getTagCompound().copy());
-                        }*/
 
                         float f3 = 0.05F;
                         entityitem.motionX = (double)((float)world.rand.nextGaussian() * f3);

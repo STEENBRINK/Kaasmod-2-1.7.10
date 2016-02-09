@@ -3,11 +3,8 @@ package nl.steenbrink.kaasmod.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 
-/**
- * Created by Gebruiker on 20-11-2015.
- */
 public class BlockBasicStair extends BlockStairs{
-    protected BlockBasicStair(Block p_i45428_1_, int p_i45428_2_) {
+    public BlockBasicStair(Block p_i45428_1_, int p_i45428_2_) {
         super(p_i45428_1_, p_i45428_2_);
     }
 }

@@ -41,7 +41,7 @@ public class TileEntityCompressor extends TileEntity implements IFluidHandler, I
             //Apply crafting here
             if (this.fluidStack.getFluid() == ModFluids.fluidCurd) {
                 this.isCrafting = true;
-                this.craftingTimer = 20 * 10;
+                this.craftingTimer = 10 * 20;
             }
         }
 

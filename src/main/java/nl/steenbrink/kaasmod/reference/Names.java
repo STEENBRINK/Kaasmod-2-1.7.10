@@ -14,9 +14,9 @@ public class Names {
         public static final String CHEESE = "cheese";
         public static final String YOUNG_CHEESE = "youngCheese";
         public static final String CHEESE_BRICKS_SLAB = "cheeseBricksSlab";
-        public static final String CHEESE_BRICKS_FULL_SLAB = "cheeseBricksFullSlab";
+        public static final String CHEESE_BRICKS_FULL_SLAB = "cheeseBricksSlabFull";
         public static final String SMOOTH_CHEESE_SLAB = "smoothCheeseSlab";
-        public static final String SMOOTH_CHEESE_FULL_SLAB = "smoothCheeseFullSlab";
+        public static final String SMOOTH_CHEESE_FULL_SLAB = "smoothCheeseSlabFull";
     }
 
     public static class Items {
